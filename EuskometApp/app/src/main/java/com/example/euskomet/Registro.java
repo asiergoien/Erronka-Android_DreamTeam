@@ -48,10 +48,10 @@ public class Registro extends AppCompatActivity {
 
         if ( contraseña1.equals(contraseña2) ) {
             //Registrar usuario
-            editor.putString(usuario + "_contraseña", usuario).commit();
-            editor.putString(usuario + "_", contraseña1).commit();
-            editor.putString(usuario + "_", pregunta).commit();
-            editor.putString(usuario + "_", respuesta).commit();
+            editor.putString(usuario + "_usuario", usuario).commit();
+            editor.putString(usuario + "_contraseña", contraseña1).commit();
+            editor.putString(usuario + "_pregunta", pregunta).commit();
+            editor.putString(usuario + "_respuesta", respuesta).commit();
             finish();
             Toast.makeText(this,"Usuario registrado correctamente",Toast.LENGTH_LONG).show();
 

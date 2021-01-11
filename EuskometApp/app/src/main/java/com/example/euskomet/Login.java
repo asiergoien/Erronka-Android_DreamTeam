@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,8 +28,10 @@ public class Login extends AppCompatActivity {
         String contraseña=this.editTextContraseña.getText().toString();
 
         if (!usuario.isEmpty() || !contraseña.isEmpty()) { //comprueba si los campos estan vacios
-            if ( MainActivity.preferencias.contains(usuario)) { // comprueba si el usuario existe
-                String contraguardada =  MainActivity.preferencias.getString(usuario, ""); // guardar en la variable la contraseña asociada al usuario
+            if ( MainActivity.preferencias.contains(usuario+"_usuario")) { // comprueba si el usuario existe
+                String contraguardada =  MainActivity.preferencias.getString(usuario+"_contraseña", ""); // guardar en la variable la contraseña asociada al usuario
+
+                Log.i("tag", "   ----------------------------------------------------    contra guardada : " + contraguardada);
 
                 if (contraseña.equals(contraguardada)) { // si la contraseña guardada coincide con la contraseña introducida
                     Toast.makeText(this, "Te has logueado", Toast.LENGTH_LONG).show();
