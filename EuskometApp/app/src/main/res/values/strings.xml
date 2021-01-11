@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Euskomet</string>
+
+    <!-- GENERAL -->
+    <string name="atras">Atrás</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="registrarse">REGISTRARSE</string>
+
+    <!-- Main Activity-->
+    <string name="bienvenido">BIENVENIDO/A</string>
+
+    <!-- Login-->
+    <string name="login">Login</string>
+    <string name="usuario">Usuario...</string>
+    <string name="contraseña">Contraseña...</string>
+    <string name="contraseñaOlvidada">Olvidé mi contraseña</string>
+    <string name="contraseñaOlvidada_toast">Has olvidado tu contraseña</string>
+
+    <!-- Registro-->
+    <string name="registro">Registro</string>
+    <string name="contraseña1registro">Contraseña...</string>
+    <string name="contraseña2registro">Confirmar contraseña...</string>
+    <string name="preguntaSeguridad">Escoja una pregunta de seguridad y su respuesta por favor:</string>
+    <string name="respuestaClave">Respuesta...</string>
+
+    <string-array name="preguntas">
+        <item>¿Dónde naciste?</item>
+        <item>¿Cuál es el segundo apellido de tu madre?</item>
+        <item>¿En qué año naciste?</item>
+        <item>¿Tu colegio de primaria?</item>
+    </string-array>
+
+
+</resources>
