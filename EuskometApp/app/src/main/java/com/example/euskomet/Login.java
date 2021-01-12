@@ -10,9 +10,35 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.IvParameterSpec;
+
 public class Login extends AppCompatActivity {
 
     private EditText editTextUsuario,editTextContraseña;
+
+
+    // ENCRIPTAR CONTRASEÑA
+    private static String claveUsuario = "euskomet";
+    private static SecretKey claveSecreta;
+    private static byte[] mensajeCodificado = null;
+    private static byte[] iv = null;
+
+    private static byte[] mensajeDecodificado = null;
+
+    private static String contraseñaEncriptada = "";
+    private static String contraguardada = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +55,15 @@ public class Login extends AppCompatActivity {
 
         if (!usuario.isEmpty() || !contraseña.isEmpty()) { //comprueba si los campos estan vacios
             if ( MainActivity.preferencias.contains(usuario+"_usuario")) { // comprueba si el usuario existe
-                String contraguardada =  MainActivity.preferencias.getString(usuario+"_contraseña", ""); // guardar en la variable la contraseña asociada al usuario
+                contraguardada =  MainActivity.preferencias.getString(usuario+"_contraseña", ""); // guardar en la variable la contraseña asociada al usuario
 
                 Log.i("tag", "   ----------------------------------------------------    contra guardada : " + contraguardada);
 
+//                encriptar(contraseña);
+
+                Log.i("tag", "   ----------------------------------------------------    contra encriptada : " + contraseñaEncriptada);
+
+//                if (contraseñaEncriptada.equals(contraguardada)) { // si la contraseña guardada coincide con la contraseña introducida
                 if (contraseña.equals(contraguardada)) { // si la contraseña guardada coincide con la contraseña introducida
                     Toast.makeText(this, "Te has logueado", Toast.LENGTH_LONG).show();
 
@@ -42,7 +73,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(this, "La contraseña introducida no es correcta", Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(this, "no existe dicho usuario en el sistema", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "No existe dicho usuario en el sistema", Toast.LENGTH_LONG).show();
             }
         }else {
             Toast.makeText(this, "Introduzca usuario y contraseña", Toast.LENGTH_LONG).show();
@@ -51,11 +82,73 @@ public class Login extends AppCompatActivity {
     }
 
     public void recuperarContraeña(View view) {
-        Toast.makeText(this, R.string.contraseñaOlvidada_toast, Toast.LENGTH_LONG).show();
+
+        String usuario=this.editTextUsuario.getText().toString();
+
+        if (!usuario.isEmpty()) { //comprueba si el usuario está vacío
+
+            RecuperarPswd.usuario = usuario; //enviar usuario a recuperar contraseña
+
+            MainActivity.preferencias = getSharedPreferences("usuarios", Context.MODE_PRIVATE);
+            if (MainActivity.preferencias.contains(usuario+"_usuario")) { // comprueba si el usuario existe
+                RecuperarPswd.pregunta =  MainActivity.preferencias.getString(usuario+"_pregunta", "");
+                Intent intent = new Intent(this,RecuperarPswd.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(this, "No existe dicho usuario en el sistema", Toast.LENGTH_LONG).show();
+            }
+
+        }else{
+            Toast.makeText(this, R.string.contraseñaOlvidada_toast, Toast.LENGTH_LONG).show();
+        }
     }
 
     public void cambioPantallaMain(View view) {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
+    }
+
+    public static void encriptar(String cadena) {
+        SecretKeyFactory skf;
+
+        try {
+
+            skf = SecretKeyFactory.getInstance("DES");
+            DESKeySpec clavEspec;
+            clavEspec = new DESKeySpec(claveUsuario.getBytes());
+            claveSecreta = skf.generateSecret(clavEspec);
+            Cipher cipher;
+            cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, claveSecreta);
+            mensajeCodificado = cipher.doFinal(cadena.getBytes());
+            iv = cipher.getIV();
+
+        } catch (NoSuchAlgorithmException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (InvalidKeyException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }catch (InvalidKeySpecException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }catch (NoSuchPaddingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException | BadPaddingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+//        System.out.println("Mensaje [ encriptar() ] --> " + cadena);
+
+        String cifradoStr = "";
+        for (byte b : mensajeCodificado) {
+            cifradoStr += b;
+        }
+
+//        System.out.println("Mensaje encriptado [ encriptar() ] --> " + cifradoStr);
+
+        contraseñaEncriptada = cifradoStr;
     }
 }

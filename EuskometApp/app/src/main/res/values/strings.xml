@@ -5,6 +5,8 @@
     <string name="atras">Atrás</string>
     <string name="entrar">ENTRAR</string>
     <string name="registrarse">REGISTRARSE</string>
+    <string name="registrar">REGISTRAR</string>
+    <string name="aceptar">ACEPTAr</string>
 
     <!-- Main Activity-->
     <string name="bienvenido">BIENVENIDO/A</string>
@@ -14,13 +16,18 @@
     <string name="usuario">Usuario...</string>
     <string name="contraseña">Contraseña...</string>
     <string name="contraseñaOlvidada">Olvidé mi contraseña</string>
-    <string name="contraseñaOlvidada_toast">Has olvidado tu contraseña</string>
+    <string name="contraseñaOlvidada_toast">Por favor, introduzca un nombre de usuario para recuperrar la contraseña</string>
+
+    <!-- Recuperar contraseña-->
+    <string name="recuperarContraseña">Recuperar contraseña</string>
+    <string name="preguntaSeguridad_recuperarContra">Pregunta de seguridad:</string>
+
 
     <!-- Registro-->
     <string name="registro">Registro</string>
     <string name="contraseña1registro">Contraseña...</string>
     <string name="contraseña2registro">Confirmar contraseña...</string>
-    <string name="preguntaSeguridad">Escoja una pregunta de seguridad y su respuesta por favor:</string>
+    <string name="preguntaSeguridad_registro">Escoja una pregunta de seguridad y su respuesta por favor:</string>
     <string name="respuestaClave">Respuesta...</string>
 
     <string-array name="preguntas">

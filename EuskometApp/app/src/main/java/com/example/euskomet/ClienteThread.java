@@ -21,33 +21,25 @@ public class ClienteThread implements Runnable {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             //Aqui pondriamos la IP y puerto.
-            //sIP = "192.168.2.91";
-            sIP = "127.0.0.1";
+            sIP = "192.168.106.26";
+//            sIP = "127.0.0.1";
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
             String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
-            con = DriverManager.getConnection( url, "root", "");
+            con = DriverManager.getConnection( url, "usuario", "1234");
 
-            /*
+
             // Consulta sencilla en este caso.
-            String sql = "SELECT * FROM usuarios";
+            String sql = "SELECT contraseña FROM usuarios WHERE nombre='Markel'";
             st = con.prepareStatement(sql);
             rs = st.executeQuery();
+
             //--
             while (rs.next()) {
-                String var1 = rs.getString("Nombre");
+                String var1 = rs.getString("contraseña");
                 Log.i("XXXXXXX", var1);
                 sResultado = var1;
             }
-
-            */
-
-            Statement estado = con.createStatement();
-            System.out.println("Conexion establecida");
-            String peticion ="select contraseña from usuarios where nombre='Markel'";
-            ResultSet result = estado.executeQuery(peticion);
-
-            sResultado = result.toString();
 
             Log.i("tag", " ---------------------------------------- " + sResultado);
 
