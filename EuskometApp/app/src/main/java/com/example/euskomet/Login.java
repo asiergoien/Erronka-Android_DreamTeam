@@ -73,6 +73,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(this, "Te has logueado", Toast.LENGTH_LONG).show();
 
                     //  USUARIO LOGUEADO    -   CAMBIO DE PANTALLA
+                    cambioPantalla_MenuPrincipal();
 
                 } else {
                     Toast.makeText(this, "La contraseña introducida no es correcta", Toast.LENGTH_LONG).show();
@@ -108,7 +109,12 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    public void cambioPantallaMain(View view) {
+    public void cambioPantalla_MenuPrincipal() {
+        Intent intent = new Intent(this,MenuPrincipal.class);
+        startActivity(intent);
+    }
+
+    public void volver(View view) {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }

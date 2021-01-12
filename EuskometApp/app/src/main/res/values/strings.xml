@@ -37,5 +37,11 @@
         <item>¿Tu colegio de primaria?</item>
     </string-array>
 
+    <!-- Menu Principal-->
+    <string name="municipios">Municipios</string>
+    <string name="espaciosNaturales">Espacios naturales</string>
+    <string name="ranking">Top ranking</string>
+    <string name="favoritos">Favoritos</string>
+
 
 </resources>
