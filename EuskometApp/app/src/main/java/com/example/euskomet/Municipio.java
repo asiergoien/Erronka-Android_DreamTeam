@@ -1,16 +1,25 @@
 package com.example.euskomet;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Municipio {
 
     private String cod_mun;
     private String nombre;
+    static int kont;
+    static int kont_nom=0;
+
+   public String[] municipios ={"Abadiño","Abaltzisketa","Abanto-Zierbena","Aduna","Agurain","Aia","Abadiño","Aiara","Aizarnazabal"};
+
+
 
     // Este constructor es solo para poder llenar la lista con datos.
-    public Municipio(String cod_mun, String nombre) {
-        this.cod_mun = cod_mun;
-        this.nombre = nombre;
+    public Municipio() {
+        //Por ejemplo
+        this.cod_mun = ""+kont++;
+        this.nombre = municipios[kont_nom];
+        kont_nom ++;
     }
 
     public String getCod_mun() {

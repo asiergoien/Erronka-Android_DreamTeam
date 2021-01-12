@@ -9,12 +9,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="353dp"
-        android:layout_height="547dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="208dp"
+        android:layout_height="429dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
