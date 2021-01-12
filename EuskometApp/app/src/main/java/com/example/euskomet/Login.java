@@ -10,8 +10,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -49,7 +51,7 @@ public class Login extends AppCompatActivity {
         editTextContraseña=(EditText) findViewById(R.id.editTextContraseña);
     }
 
-    public void loguear(View v) {
+    public void loguear(View v) throws UnsupportedEncodingException {
         String usuario=this.editTextUsuario.getText().toString();
         String contraseña=this.editTextContraseña.getText().toString();
 
@@ -59,12 +61,15 @@ public class Login extends AppCompatActivity {
 
                 Log.i("tag", "   ----------------------------------------------------    contra guardada : " + contraguardada);
 
-//                encriptar(contraseña);
+                String cifradoStr = "";
+                for (byte b : cifrar(contraseña)) {
+                    cifradoStr += b;
+                }
 
-                Log.i("tag", "   ----------------------------------------------------    contra encriptada : " + contraseñaEncriptada);
+                Log.i("tag", "   ----------------------------------------------------    contra encriptada : " +  contraseñaEncriptada);
 
-//                if (contraseñaEncriptada.equals(contraguardada)) { // si la contraseña guardada coincide con la contraseña introducida
-                if (contraseña.equals(contraguardada)) { // si la contraseña guardada coincide con la contraseña introducida
+                if (cifradoStr.equals(contraguardada)) { // si la contraseña guardada coincide con la contraseña introducida
+//                if (contraseña.equals(contraguardada)) { // si la contraseña guardada coincide con la contraseña introducida
                     Toast.makeText(this, "Te has logueado", Toast.LENGTH_LONG).show();
 
                     //  USUARIO LOGUEADO    -   CAMBIO DE PANTALLA
@@ -108,47 +113,20 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static void encriptar(String cadena) {
-        SecretKeyFactory skf;
-
+    public byte[] cifrar (String texto) {
+        MessageDigest md = null;
         try {
-
-            skf = SecretKeyFactory.getInstance("DES");
-            DESKeySpec clavEspec;
-            clavEspec = new DESKeySpec(claveUsuario.getBytes());
-            claveSecreta = skf.generateSecret(clavEspec);
-            Cipher cipher;
-            cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, claveSecreta);
-            mensajeCodificado = cipher.doFinal(cadena.getBytes());
-            iv = cipher.getIV();
-
-        } catch (NoSuchAlgorithmException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        } catch (InvalidKeyException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }catch (InvalidKeySpecException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }catch (NoSuchPaddingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException | BadPaddingException e) {
-            // TODO Auto-generated catch block
+            md = MessageDigest.getInstance("SHA");
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+        byte dataBytes[] = texto.getBytes();
+        md.update(dataBytes);
+        byte resumen[] = md.digest();
 
-//        System.out.println("Mensaje [ encriptar() ] --> " + cadena);
+//		System.out.println("desde la funcion --> " + resumen.toString());
 
-        String cifradoStr = "";
-        for (byte b : mensajeCodificado) {
-            cifradoStr += b;
-        }
-
-//        System.out.println("Mensaje encriptado [ encriptar() ] --> " + cifradoStr);
-
-        contraseñaEncriptada = cifradoStr;
+        return resumen;
     }
+
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
@@ -37,14 +39,15 @@ public class Registro extends AppCompatActivity {
 
     // ENCRIPTAR CONTRASEÑA
     private static String claveUsuario = "euskomet";
-    private static SecretKey claveSecreta;
+    public static SecretKey claveSecreta;
     private static byte[] mensajeCodificado = null;
-    private static byte[] iv = null;
+    public static byte[] iv = null;
 
     private static byte[] mensajeDecodificado = null;
 
 
     private static String contraseñaEncriptada = "";
+    private static String ivEncriptado = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +75,17 @@ public class Registro extends AppCompatActivity {
         MainActivity.preferencias = getSharedPreferences("usuarios", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=MainActivity.preferencias.edit();
 
-//        encriptar(contraseña1);
-
         if ( contraseña1.equals(contraseña2) ) {
+            // Encriptar contraseña
+//            cifrar(contraseña1);
+
+            String cifradoStr = "";
+            for (byte b : cifrar(contraseña1)) {
+                cifradoStr += b;
+            }
             //Registrar usuario
             editor.putString(usuario + "_usuario", usuario).commit();
-            editor.putString(usuario + "_contraseña", contraseña1).commit();
-//            editor.putString(usuario + "_contraseña", contraseñaEncriptada).commit();
+            editor.putString(usuario + "_contraseña", cifradoStr).commit();
             editor.putString(usuario + "_pregunta", pregunta).commit();
             editor.putString(usuario + "_respuesta", respuesta).commit();
             finish();
@@ -94,79 +101,20 @@ public class Registro extends AppCompatActivity {
         }
     }
 
-    public static void encriptar(String cadena) {
-        SecretKeyFactory skf;
-
+    public byte[] cifrar (String texto) {
+        MessageDigest md = null;
         try {
-
-            skf = SecretKeyFactory.getInstance("DES");
-            DESKeySpec clavEspec;
-            clavEspec = new DESKeySpec(claveUsuario.getBytes());
-            claveSecreta = skf.generateSecret(clavEspec);
-            Cipher cipher;
-            cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, claveSecreta);
-            mensajeCodificado = cipher.doFinal(cadena.getBytes());
-            iv = cipher.getIV();
-
-        } catch (NoSuchAlgorithmException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        } catch (InvalidKeyException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }catch (InvalidKeySpecException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }catch (NoSuchPaddingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException | BadPaddingException e) {
-            // TODO Auto-generated catch block
+            md = MessageDigest.getInstance("SHA");
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+        byte dataBytes[] = texto.getBytes();
+        md.update(dataBytes);
+        byte resumen[] = md.digest();
 
-//        System.out.println("Mensaje [ encriptar() ] --> " + cadena);
+//		System.out.println("desde la funcion --> " + resumen.toString());
 
-        String cifradoStr = "";
-        for (byte b : mensajeCodificado) {
-            cifradoStr += b;
-        }
-
-//        System.out.println("Mensaje encriptado [ encriptar() ] --> " + cifradoStr);
-
-        contraseñaEncriptada = cifradoStr;
+        return resumen;
     }
 
-    public static void desencriptar(SecretKey claveSecreta) {
-
-        Cipher cipher;
-        try {
-            cipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
-            IvParameterSpec dps = new IvParameterSpec(iv);
-            cipher.init(Cipher.DECRYPT_MODE, claveSecreta, dps);
-            mensajeDecodificado = cipher.doFinal(mensajeCodificado);
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }catch (InvalidKeyException | InvalidAlgorithmParameterException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException | BadPaddingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        String cifradoStr = "";
-        for (byte b : mensajeCodificado) {
-            cifradoStr += b;
-        }
-
-//        System.out.println("Mensaje encriptado [ desencriptar() ] --> " + cifradoStr);
-
-
-
-//        System.out.println("Mensaje desencriptado [ desencriptar() ] --> " + new String(mensajeDecodificado));
-
-    }
 }
