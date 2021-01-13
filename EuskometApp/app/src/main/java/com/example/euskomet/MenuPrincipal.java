@@ -25,7 +25,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btnAtras = (Button)findViewById(R.id.btn_atras);
     }
     public void Municipios(View view){
-        Intent ListadoDatos = new Intent(this,ListadoDatos.class);
+        Intent ListadoDatos = new Intent(this, ListadoDatos_Municipios.class);
         startActivity(ListadoDatos);
 
     }

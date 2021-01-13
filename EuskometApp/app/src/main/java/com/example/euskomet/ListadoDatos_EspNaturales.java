@@ -1,9 +1,5 @@
 package com.example.euskomet;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -15,9 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 
-public class ListadoDatos extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
+/*
+public class ListadoDatos_EspNaturales extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
 
     private ConnectivityManager connectivityManager = null;
 
@@ -25,18 +26,18 @@ public class ListadoDatos extends AppCompatActivity implements AdapterView.OnIte
     public RecyclerView oRecyclerView;
 
 //    public ArrayList<Provincias> provArrayList = new ArrayList<Provincias>();
-    ArrayList<String> nombreProvincias = new ArrayList<String>();
-    ArrayList<Municipio> arrayDatosMunicipio = new ArrayList<Municipio>();
-    ArrayList<Municipio> arrayDatosMunicipio_Bizkaia = new ArrayList<Municipio>();
-    ArrayList<Municipio> arrayDatosMunicipio_Gipuzkoa = new ArrayList<Municipio>();
-    ArrayList<Municipio> arrayDatosMunicipio_Araba = new ArrayList<Municipio>();
+    ArrayList<String> nombreMunicipio = new ArrayList<String>();
+    ArrayList<EspacioNatural> arrayDatosEspNatural = new ArrayList<EspacioNatural>();
+    ArrayList<Municipio> arrayDatosEspNatural_Bizkaia = new ArrayList<Municipio>();
+    ArrayList<Municipio> arrayDatosEspNatural_Gipuzkoa = new ArrayList<Municipio>();
+    ArrayList<Municipio> arrayDatosEspNatural_Araba = new ArrayList<Municipio>();
 
     private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listado_datos);
+        setContentView(R.layout.activity_listado_datos_esp_naturales);
 //        provArrayList = new ArrayList<Provincias>();
         oRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
 
@@ -45,13 +46,11 @@ public class ListadoDatos extends AppCompatActivity implements AdapterView.OnIte
 
         conectarOnClick();
 
-
-
         try {
-            ArrayList<Municipio> arrayMunicipio = new ArrayList<Municipio>();
-            arrayMunicipio = conectarMunicipios();
-            for (int i=0;i<arrayMunicipio.size();i++) {
-                arrayDatosMunicipio.add(arrayMunicipio.get(i));
+            ArrayList<EspacioNatural> arrayEspNatural = new ArrayList<EspacioNatural>();
+            arrayEspNatural = conectarEspaciosNaturales();
+            for (int i=0;i<arrayEspNatural.size();i++) {
+                arrayDatosEspNatural.add(arrayEspNatural.get(i));
             }
 
         } catch (InterruptedException e) {
@@ -63,18 +62,19 @@ public class ListadoDatos extends AppCompatActivity implements AdapterView.OnIte
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         oRecyclerView.setLayoutManager(llm);
-
-        for (int i=0;i<arrayDatosMunicipio.size();i++) {
-            if (arrayDatosMunicipio.get(i).getCod_prov()==1) {
-                arrayDatosMunicipio_Bizkaia.add(arrayDatosMunicipio.get(i));
+/*
+        for (int i=0;i<arrayDatosEspNatural.size();i++) {
+            if (arrayDatosEspNatural.get(i).getCod_mun()==1) {
+                arrayDatosEspNatural_Bizkaia.add(arrayDatosEspNatural.get(i));
             }
-            if (arrayDatosMunicipio.get(i).getCod_prov()==2) {
-                arrayDatosMunicipio_Gipuzkoa.add(arrayDatosMunicipio.get(i));
+            if (arrayDatosEspNatural.get(i).getCod_mun()==2) {
+                arrayDatosEspNatural_Gipuzkoa.add(arrayDatosEspNatural.get(i));
             }
-            if (arrayDatosMunicipio.get(i).getCod_prov()==3) {
-                arrayDatosMunicipio_Araba.add(arrayDatosMunicipio.get(i));
+            if (arrayDatosEspNatural.get(i).getCod_mun()==3) {
+                arrayDatosEspNatural_Araba.add(arrayDatosEspNatural.get(i));
             }
         }
+
 
     }
 
@@ -104,25 +104,25 @@ public class ListadoDatos extends AppCompatActivity implements AdapterView.OnIte
 
         try {
             if (isConnected()) {
-                ArrayList<Provincias> arrayProvincias = new ArrayList<Provincias>();
-                arrayProvincias = conectarProvincias();
+                ArrayList<Municipio> arrayMunicipios = new ArrayList<Municipio>();
+                arrayMunicipios = conectarMunicipios();
 
 //                ArrayList<String> nombreProvincias = new ArrayList<String>();
 //                String nombreProvincias[] = new String[arrayProvincias.size()];
-                for(int i = 0; i < arrayProvincias.size(); i++){
-                    nombreProvincias.add(arrayProvincias.get(i).getNombre());
+                for(int i = 0; i < arrayMunicipios.size(); i++){
+                    nombreMunicipio.add(arrayMunicipios.get(i).getNombre());
 //                    nombreProvincias[i] = arrayProvincias.get(i).getNombre();
                 }
 
-                Log.i("XXXXXXXXXXXXXXXXXXXXXX", "----------------------------------------" + nombreProvincias.get(0));
-                System.out.println("----------------------------------------" + nombreProvincias.get(0));
+                Log.i("XXXXXXXXXXXXXXXXXXXXXX", "----------------------------------------" + nombreMunicipio.get(0));
+                System.out.println("----------------------------------------" + nombreMunicipio.get(0));
 
-                if (null == arrayProvincias) { // Si la respuesta es null, una excepción ha ocurrido.
+                if (null == arrayMunicipios) { // Si la respuesta es null, una excepción ha ocurrido.
                     Toast.makeText(getApplicationContext(), "ERROR_COMUNICACION", Toast.LENGTH_SHORT).show();
                 } else {
 
                     //EJECUTAR SPINNER + RECYCLER VIEW
-                    ArrayAdapter<String> adapter= new ArrayAdapter <String> (this, android.R.layout.simple_spinner_item, nombreProvincias);
+                    ArrayAdapter<String> adapter= new ArrayAdapter <String> (this, android.R.layout.simple_spinner_item, nombreMunicipio);
                     spinner.setAdapter(adapter);
 
                 }
@@ -135,20 +135,20 @@ public class ListadoDatos extends AppCompatActivity implements AdapterView.OnIte
         }
 
     }
-    private ArrayList<Provincias> conectarProvincias() throws InterruptedException {
-        ClienteThread clienteThread = new ClienteThread();
-        Thread thread = new Thread(clienteThread);
-        thread.start();
-        thread.join(); // Esperar respuesta del servidor...
-        return clienteThread.getprovArrayList();
-    }
-
     private ArrayList<Municipio> conectarMunicipios() throws InterruptedException {
         ClienteThreadMunicipios clienteThread = new ClienteThreadMunicipios();
         Thread thread = new Thread(clienteThread);
         thread.start();
         thread.join(); // Esperar respuesta del servidor...
         return clienteThread.getMunArrayList();
+    }
+
+    private ArrayList<EspacioNatural> conectarEspaciosNaturales() throws InterruptedException {
+        ClienteThreadEspaciosNaturales clienteThread = new ClienteThreadEspaciosNaturales();
+        Thread thread = new Thread(clienteThread);
+        thread.start();
+        thread.join(); // Esperar respuesta del servidor...
+        return clienteThread.getEspNatArrayList();
     }
 
     public boolean isConnected() {
@@ -164,3 +164,5 @@ public class ListadoDatos extends AppCompatActivity implements AdapterView.OnIte
         }
         return ret;
     }}
+    
+ */

@@ -5,12 +5,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MunicipioAdapter extends RecyclerView.Adapter<MunicipioAdapter.MyViewHolder> {
+public class EspNaturalesAdapter extends RecyclerView.Adapter<EspNaturalesAdapter.MyViewHolder> {
     private ArrayList<Municipio> arrayMunicipio = new ArrayList<Municipio>();
     public OnItemClickListener listener = null;
 
@@ -29,12 +28,12 @@ public class MunicipioAdapter extends RecyclerView.Adapter<MunicipioAdapter.MyVi
         }
     }
 
-    public MunicipioAdapter(ArrayList<Municipio> munList, OnItemClickListener listener) {
+    public EspNaturalesAdapter(ArrayList<Municipio> munList, OnItemClickListener listener) {
         this.arrayMunicipio = munList;
         this.listener = listener;
     }
 
-    public MunicipioAdapter(ArrayList<Municipio> munList) {
+    public EspNaturalesAdapter(ArrayList<Municipio> munList) {
         this.arrayMunicipio = munList;
     }
 
