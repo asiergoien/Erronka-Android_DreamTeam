@@ -8,11 +8,12 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MunicipioAdapter extends RecyclerView.Adapter<MunicipioAdapter.MyViewHolder> {
-    private List<Municipio> munList;
-    public final OnItemClickListener listener;
+    private ArrayList<Municipio> arrayMunicipio = new ArrayList<Municipio>();
+    public OnItemClickListener listener = null;
 
 
 
@@ -28,15 +29,23 @@ public class MunicipioAdapter extends RecyclerView.Adapter<MunicipioAdapter.MyVi
         }
     }
 
-    public MunicipioAdapter(List<Municipio> munList, OnItemClickListener listener) {
-        this.munList = munList;
+    public MunicipioAdapter(ArrayList<Municipio> munList, OnItemClickListener listener) {
+        this.arrayMunicipio = munList;
         this.listener = listener;
+    }
+
+    public MunicipioAdapter(ArrayList<Municipio> munList) {
+        this.arrayMunicipio = munList;
+    }
+
+    public ArrayList<Municipio> getArrayMunicipio() {
+        return arrayMunicipio;
     }
 
     @Override
     public void onBindViewHolder( MyViewHolder holder, int position) {
-        Municipio m = munList.get(position);
-        holder.cod_mun.setText(m.getCod_mun());
+        Municipio m = arrayMunicipio.get(position);
+        holder.cod_mun.setText(String.valueOf(m.getCod_mun()));
         holder.nombre.setText(m.getNombre());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +57,7 @@ public class MunicipioAdapter extends RecyclerView.Adapter<MunicipioAdapter.MyVi
     }
     @Override
     public int getItemCount() {
-        return munList.size();
+        return arrayMunicipio.size();
     }
 
 

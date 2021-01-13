@@ -1,6 +1,5 @@
 package com.example.euskomet;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,11 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ClienteThread implements Runnable {
+public class ClienteThreadPrueba implements Runnable {
     private String sResultado;
-    public ClienteThread() {}
+    public ClienteThreadPrueba() {}
 
-    private ArrayList<Provincias> provArrayList = new ArrayList<Provincias>();
 
     @Override
     public void run() {
@@ -33,24 +31,21 @@ public class ClienteThread implements Runnable {
             sBBDD = "euskomet"; //nombre de la base de datos
             String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
 //            con = DriverManager.getConnection( url, "root", "");
-            con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
+            con = DriverManager.getConnection( url, "usuario", "1234");
 
 
-            // Consulta sencilla en este caso.
-            String sql = "SELECT * FROM provincias";
-//            String sql = "SELECT * FROM usuarios";
+            String sql = "SELECT nombre FROM provincias where nombre = 'Bizkaia'";
             st = con.prepareStatement(sql);
             rs = st.executeQuery();
 
             //--
             while (rs.next()) {
-
-                Integer cod = rs.getInt("cod_prov");
-                String nombre =  rs.getString("nombre");
-
-                Provincias prov = new Provincias(cod, nombre);
-                provArrayList.add(prov);
+                String var1 = rs.getString("nombre");
+                Log.i("XXXXXXX", var1);
+                sResultado = var1;
             }
+
+            Log.i("tag", " ---------------------------------------- " + sResultado);
 
         } catch (ClassNotFoundException e) {
             Log.e("ClassNotFoundException", "");
@@ -83,7 +78,7 @@ public class ClienteThread implements Runnable {
         }
     }
 
-    public ArrayList<Provincias> getprovArrayList() {
-        return provArrayList;
+    public String getResulset() {
+        return sResultado;
     }
 }

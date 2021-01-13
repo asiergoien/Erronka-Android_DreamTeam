@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
@@ -29,6 +32,7 @@ import javax.crypto.spec.IvParameterSpec;
 public class Login extends AppCompatActivity {
 
     private EditText editTextUsuario,editTextContraseña;
+    ImageView o_ImageView;
 
 
     // ENCRIPTAR CONTRASEÑA
@@ -49,6 +53,10 @@ public class Login extends AppCompatActivity {
 
         editTextUsuario=(EditText) findViewById(R.id.editTextUsuario);
         editTextContraseña=(EditText) findViewById(R.id.editTextContraseña);
+
+        o_ImageView = findViewById(R.id.imageView2);
+        Animation oAnimacion = AnimationUtils.loadAnimation(getApplicationContext(),  R.anim.girar_logo);
+        o_ImageView.startAnimation(oAnimacion);
     }
 
     public void loguear(View v) throws UnsupportedEncodingException {

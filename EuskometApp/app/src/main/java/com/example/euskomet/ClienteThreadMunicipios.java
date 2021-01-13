@@ -1,20 +1,18 @@
 package com.example.euskomet;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ClienteThread implements Runnable {
+public class ClienteThreadMunicipios implements Runnable {
     private String sResultado;
-    public ClienteThread() {}
+    public ClienteThreadMunicipios() {}
 
-    private ArrayList<Provincias> provArrayList = new ArrayList<Provincias>();
+    private ArrayList<Municipio> munArrayList = new ArrayList<Municipio>();
 
     @Override
     public void run() {
@@ -37,7 +35,7 @@ public class ClienteThread implements Runnable {
 
 
             // Consulta sencilla en este caso.
-            String sql = "SELECT * FROM provincias";
+            String sql = "SELECT * FROM municipios";
 //            String sql = "SELECT * FROM usuarios";
             st = con.prepareStatement(sql);
             rs = st.executeQuery();
@@ -45,11 +43,12 @@ public class ClienteThread implements Runnable {
             //--
             while (rs.next()) {
 
-                Integer cod = rs.getInt("cod_prov");
+                Integer cod = rs.getInt("cod_mun");
                 String nombre =  rs.getString("nombre");
+                Integer prov = rs.getInt("cod_prov");
 
-                Provincias prov = new Provincias(cod, nombre);
-                provArrayList.add(prov);
+                Municipio mun = new Municipio(cod, nombre, prov);
+                munArrayList.add(mun);
             }
 
         } catch (ClassNotFoundException e) {
@@ -83,7 +82,7 @@ public class ClienteThread implements Runnable {
         }
     }
 
-    public ArrayList<Provincias> getprovArrayList() {
-        return provArrayList;
+    public ArrayList<Municipio> getMunArrayList() {
+        return munArrayList;
     }
 }

@@ -7,7 +7,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +52,8 @@ public class Registro extends AppCompatActivity {
     private static String contraseñaEncriptada = "";
     private static String ivEncriptado = "";
 
+    ImageView o_ImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +65,10 @@ public class Registro extends AppCompatActivity {
         etContraseña2=(EditText)findViewById(R.id.etContraseña2);
         spinPregunta=(Spinner)findViewById(R.id.spinPregunta);
        etRespuesta=(EditText)findViewById(R.id.etRespuesta);
+
+        o_ImageView = findViewById(R.id.imageView4);
+        Animation oAnimacion = AnimationUtils.loadAnimation(getApplicationContext(),  R.anim.agrandar_logo);
+        o_ImageView.startAnimation(oAnimacion);
 
     }
 
