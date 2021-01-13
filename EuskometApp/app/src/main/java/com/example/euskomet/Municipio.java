@@ -5,28 +5,21 @@ import java.util.Date;
 
 public class Municipio {
 
-    private String cod_mun;
+    private int cod_mun;
     private String nombre;
-    static int kont;
-    static int kont_nom=0;
+    private int cod_prov;
 
-   public String[] municipios ={"Abadiño","Abaltzisketa","Abanto-Zierbena","Aduna","Agurain","Aia","Abadiño","Aiara","Aizarnazabal"};
-
-
-
-    // Este constructor es solo para poder llenar la lista con datos.
-    public Municipio() {
-        //Por ejemplo
-        this.cod_mun = ""+kont++;
-        this.nombre = municipios[kont_nom];
-        kont_nom ++;
+    public Municipio(int cod_mun, String nombre, int cod_prov) {
+        this.cod_mun = cod_mun;
+        this.nombre = nombre;
+        this.cod_prov = cod_prov;
     }
 
-    public String getCod_mun() {
+    public int getCod_mun() {
         return cod_mun;
     }
 
-    public void setCod_mun(String cod_mun) {
+    public void setCod_mun(int cod_mun) {
         this.cod_mun = cod_mun;
     }
 
@@ -38,4 +31,11 @@ public class Municipio {
         this.nombre = nombre;
     }
 
+    public int getCod_prov() {
+        return cod_prov;
+    }
+
+    public void setCod_prov(int cod_prov) {
+        this.cod_prov = cod_prov;
+    }
 }

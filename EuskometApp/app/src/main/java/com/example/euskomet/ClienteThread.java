@@ -1,15 +1,21 @@
 package com.example.euskomet;
 import android.util.Log;
+import android.widget.Toast;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ClienteThread implements Runnable {
     private String sResultado;
     public ClienteThread() {}
+
+    private ArrayList<Provincias> provArrayList = new ArrayList<Provincias>();
+
     @Override
     public void run() {
         ResultSet rs = null;
@@ -26,22 +32,25 @@ public class ClienteThread implements Runnable {
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
             String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
-            con = DriverManager.getConnection( url, "usuario", "1234");
+//            DriverManager.getConnection( url, "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
 
 
             // Consulta sencilla en este caso.
-            String sql = "SELECT contraseña FROM usuarios WHERE nombre='Markel'";
+//            String sql = "SELECT * FROM provincias";
+            String sql = "SELECT * FROM usuarios";
             st = con.prepareStatement(sql);
             rs = st.executeQuery();
 
             //--
             while (rs.next()) {
-                String var1 = rs.getString("contraseña");
-                Log.i("XXXXXXX", var1);
-                sResultado = var1;
-            }
 
-            Log.i("tag", " ---------------------------------------- " + sResultado);
+                Integer cod = rs.getInt("1");
+                String nombre =  rs.getString("2");
+
+                Provincias prov = new Provincias(cod, nombre);
+                provArrayList.add(prov);
+            }
 
         } catch (ClassNotFoundException e) {
             Log.e("ClassNotFoundException", "");
@@ -73,7 +82,8 @@ public class ClienteThread implements Runnable {
             }
         }
     }
-    public String getResponse() {
-        return sResultado;
+
+    public ArrayList<Provincias> getprovArrayList() {
+        return provArrayList;
     }
 }
