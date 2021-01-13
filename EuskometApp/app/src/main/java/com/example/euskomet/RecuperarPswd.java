@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class RecuperarPswd extends AppCompatActivity {
 
     public static String usuario,pregunta,respuestaGuardada;
@@ -64,8 +67,14 @@ public class RecuperarPswd extends AppCompatActivity {
         SharedPreferences.Editor editor=MainActivity.preferencias.edit();
 
         if ( contraseña1.equals(contraseña2) ) {
+
+            String cifradoStr = "";
+            for (byte b : cifrar(contraseña1)) {
+                cifradoStr += b;
+            }
+
             //Cambiar contraseña
-            editor.putString(usuario + "_contraseña", contraseña1).commit();
+            editor.putString(usuario + "_contraseña", cifradoStr).commit();
             Toast.makeText(this,"Contraseña cambiada correctamente",Toast.LENGTH_LONG).show();
             finish();
 
@@ -76,4 +85,21 @@ public class RecuperarPswd extends AppCompatActivity {
         }
 
     }
+
+    public byte[] cifrar (String texto) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        byte dataBytes[] = texto.getBytes();
+        md.update(dataBytes);
+        byte resumen[] = md.digest();
+
+//		System.out.println("desde la funcion --> " + resumen.toString());
+
+        return resumen;
+    }
+
 }

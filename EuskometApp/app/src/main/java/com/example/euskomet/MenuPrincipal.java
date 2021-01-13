@@ -38,7 +38,8 @@ public class MenuPrincipal extends AppCompatActivity {
     public void Favoritos(View view){
 
     }
-    public void Atras(View view){
-
+    public void volver(View view) {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }

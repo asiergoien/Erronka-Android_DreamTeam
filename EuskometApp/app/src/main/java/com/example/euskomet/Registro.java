@@ -3,6 +3,7 @@ package com.example.euskomet;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -124,6 +125,11 @@ public class Registro extends AppCompatActivity {
 //		System.out.println("desde la funcion --> " + resumen.toString());
 
         return resumen;
+    }
+
+    public void volver(View view) {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 
 }
