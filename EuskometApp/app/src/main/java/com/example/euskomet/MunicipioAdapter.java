@@ -8,8 +8,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.euskomet.Ventanas.Municipio;
-
 import java.util.ArrayList;
 
 public class MunicipioAdapter extends RecyclerView.Adapter<MunicipioAdapter.MyViewHolder> {

@@ -1,8 +1,6 @@
 package com.example.euskomet;
 import android.util.Log;
 
-import com.example.euskomet.Ventanas.Municipio;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

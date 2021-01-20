@@ -12,6 +12,7 @@ public class Provincias {
     }
 
     public Provincias() {
+
     }
 
     public int getCod_prov() {

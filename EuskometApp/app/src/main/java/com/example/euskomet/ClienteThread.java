@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.euskomet.Ventanas.Mostrar_Informacion;
-import com.example.euskomet.Ventanas.Municipio;
-import com.example.euskomet.Ventanas.Provincias;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

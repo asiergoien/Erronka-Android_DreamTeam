@@ -33,46 +33,50 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnCamara"
-        android:layout_width="93dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="292dp"
-        android:layout_marginTop="22dp"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="209dp"
-        android:layout_height="227dp"
+        android:layout_width="219dp"
+        android:layout_height="216dp"
         android:layout_marginStart="115dp"
         android:layout_marginTop="61dp"
         android:layout_marginEnd="115dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/patata_amore"
+        tools:srcCompat="@drawable/patata_amore" />
 
-    <Button
-        android:id="@+id/btnizk"
-        android:layout_width="132dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginBottom="256dp"
-        android:text="@string/boton_izk"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="65dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/thefullreflexcamera_slr_camera_4626" />
 
-    <Button
-        android:id="@+id/bntDere"
-        android:layout_width="132dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="256dp"
-        android:text="@string/boton_dere"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="64dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="315dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/arrow_right" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="64dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="42dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/arrow_left" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,5 @@
 package com.example.euskomet;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 public class Municipio {
 
     private int cod_mun;
