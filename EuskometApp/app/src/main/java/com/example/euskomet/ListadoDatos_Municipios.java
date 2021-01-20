@@ -65,13 +65,13 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
         oRecyclerView.setLayoutManager(llm);
 
         for (int i=0;i<arrayDatosMunicipio.size();i++) {
-            if (arrayDatosMunicipio.get(i).getCod_prov()==1) {
+            if (arrayDatosMunicipio.get(i).getCod_prov()==48) { //Bizkaia
                 arrayDatosMunicipio_Bizkaia.add(arrayDatosMunicipio.get(i));
             }
-            if (arrayDatosMunicipio.get(i).getCod_prov()==2) {
+            if (arrayDatosMunicipio.get(i).getCod_prov()==20) { //Giputxilandia
                 arrayDatosMunicipio_Gipuzkoa.add(arrayDatosMunicipio.get(i));
             }
-            if (arrayDatosMunicipio.get(i).getCod_prov()==3) {
+            if (arrayDatosMunicipio.get(i).getCod_prov()==1) { //Araba
                 arrayDatosMunicipio_Araba.add(arrayDatosMunicipio.get(i));
             }
         }

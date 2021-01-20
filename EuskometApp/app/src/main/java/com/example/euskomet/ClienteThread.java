@@ -27,7 +27,8 @@ public class ClienteThread implements Runnable {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             //Aqui pondriamos la IP y puerto.
-            sIP = "192.168.106.26";
+           // sIP = "192.168.106.26";  //Markel Klase
+             sIP = "192.168.106.12";  //Asier Klase
 //            sIP = "127.0.0.1";
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
