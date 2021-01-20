@@ -1,6 +1,8 @@
 package com.example.euskomet;
 import android.util.Log;
 
+import com.example.euskomet.Ventanas.Municipio;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -23,15 +25,17 @@ public class ClienteThreadMunicipios implements Runnable {
         String sPuerto;
         String sBBDD;
         try{
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             //Aqui pondriamos la IP y puerto.
-            //sIP = "192.168.106.26"; //Markel Klase
-            sIP = "192.168.106.12";   //Asier Klase
-//            sIP = "127.0.0.1";
+            //sIP = "192.168.106.12";  //Asier Klase
+            //sIP= "localhost";
+            sIP= "192.168.0.11";
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
             String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
 //            con = DriverManager.getConnection( url, "root", "");
+            // con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
+            Log.i("mysql ", "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD+ "usuario"+"1234");
             con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
 
 

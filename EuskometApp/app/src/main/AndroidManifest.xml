@@ -12,13 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Euskomet">
-        <activity android:name=".Mostrar_Informacion"></activity>
-        <activity android:name=".ListadoDatos_Municipios" />
-        <activity android:name=".MenuPrincipal" />
-        <activity android:name=".RecuperarPswd" />
-        <activity android:name=".Registro" />
-        <activity android:name=".Login" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Ventanas.Fotos"></activity>
+        <activity android:name=".Ventanas.Mostrar_Informacion" />
+        <activity android:name=".ClienteThread$ListadoDatos_Municipios" />
+        <activity android:name=".Ventanas.MenuPrincipal" />
+        <activity android:name=".Ventanas.RecuperarPswd" />
+        <activity android:name=".Ventanas.Registro" />
+        <activity android:name=".Ventanas.Login" />
+        <activity android:name=".Ventanas.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
