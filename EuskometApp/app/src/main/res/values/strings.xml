@@ -43,5 +43,26 @@
     <string name="ranking">Top ranking</string>
     <string name="favoritos">Favoritos</string>
 
+    <!-- Mostrar informacion-->
+
+
+    <string name="titulo">Ejemplo</string>
+
+    <string name="dato1">Dato1</string>
+
+    <string name="dato2">Dato2</string>
+
+    <string name="dato3">Dato3</string>
+
+    <string name="fotos">Fotos</string>
+
+    <string name="mapa">Localización</string>
+
+    <string name="historico">Histórico</string>
+
+    <string name="añadir_favoritos">Añadir a Favoritos</string>
+
+    <string name="compartir">Compartir</string>
+
 
 </resources>

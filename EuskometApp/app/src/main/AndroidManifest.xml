@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Euskomet">
-        <activity android:name=".ListadoDatos_Municipios"></activity>
+        <activity android:name=".Mostrar_Informacion"></activity>
+        <activity android:name=".ListadoDatos_Municipios" />
         <activity android:name=".MenuPrincipal" />
         <activity android:name=".RecuperarPswd" />
         <activity android:name=".Registro" />

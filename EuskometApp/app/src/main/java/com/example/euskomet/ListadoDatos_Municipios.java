@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
     private MunicipioAdapter oListaAdapter = null;
     public RecyclerView oRecyclerView;
 
-//    public ArrayList<Provincias> provArrayList = new ArrayList<Provincias>();
+    //    public ArrayList<Provincias> provArrayList = new ArrayList<Provincias>();
     ArrayList<String> nombreProvincias = new ArrayList<String>();
     ArrayList<Municipio> arrayDatosMunicipio = new ArrayList<Municipio>();
     ArrayList<Municipio> arrayDatosMunicipio_Bizkaia = new ArrayList<Municipio>();
@@ -38,7 +39,7 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_datos_municipios);
 //        provArrayList = new ArrayList<Provincias>();
-        oRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        oRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
@@ -46,11 +47,10 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
         conectarOnClick();
 
 
-
         try {
             ArrayList<Municipio> arrayMunicipio = new ArrayList<Municipio>();
             arrayMunicipio = conectarMunicipios();
-            for (int i=0;i<arrayMunicipio.size();i++) {
+            for (int i = 0; i < arrayMunicipio.size(); i++) {
                 arrayDatosMunicipio.add(arrayMunicipio.get(i));
             }
 
@@ -64,14 +64,14 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         oRecyclerView.setLayoutManager(llm);
 
-        for (int i=0;i<arrayDatosMunicipio.size();i++) {
-            if (arrayDatosMunicipio.get(i).getCod_prov()==48) { //Bizkaia
+        for (int i = 0; i < arrayDatosMunicipio.size(); i++) {
+            if (arrayDatosMunicipio.get(i).getCod_prov() == 48) { //Bizkaia
                 arrayDatosMunicipio_Bizkaia.add(arrayDatosMunicipio.get(i));
             }
-            if (arrayDatosMunicipio.get(i).getCod_prov()==20) { //Giputxilandia
+            if (arrayDatosMunicipio.get(i).getCod_prov() == 20) { //Giputxilandia
                 arrayDatosMunicipio_Gipuzkoa.add(arrayDatosMunicipio.get(i));
             }
-            if (arrayDatosMunicipio.get(i).getCod_prov()==1) { //Araba
+            if (arrayDatosMunicipio.get(i).getCod_prov() == 1) { //Araba
                 arrayDatosMunicipio_Araba.add(arrayDatosMunicipio.get(i));
             }
         }
@@ -79,13 +79,19 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
     }
 
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-        String selec=spinner.getSelectedItem().toString();
+        String selec = spinner.getSelectedItem().toString();
         if (selec.equals("Bizkaia")) {
-            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Bizkaia,null);
+            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Bizkaia, null);
         } else if (selec.equals("Gipuzkoa")) {
-            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Gipuzkoa,null);
+            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Gipuzkoa, null);
         } else if (selec.equals("Araba")) {
-            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Araba,null);
+            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Araba, new OnItemClickListener() {
+                @Override
+                public void onItemClick(Municipio item) {
+                    Mostrar_informacion();
+
+                }
+            });
         }
         oRecyclerView.setAdapter(oListaAdapter);
     }
@@ -109,7 +115,7 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
 
 //                ArrayList<String> nombreProvincias = new ArrayList<String>();
 //                String nombreProvincias[] = new String[arrayProvincias.size()];
-                for(int i = 0; i < arrayProvincias.size(); i++){
+                for (int i = 0; i < arrayProvincias.size(); i++) {
                     nombreProvincias.add(arrayProvincias.get(i).getNombre());
 //                    nombreProvincias[i] = arrayProvincias.get(i).getNombre();
                 }
@@ -122,7 +128,7 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
                 } else {
 
                     //EJECUTAR SPINNER + RECYCLER VIEW
-                    ArrayAdapter<String> adapter= new ArrayAdapter <String> (this, android.R.layout.simple_spinner_item, nombreProvincias);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nombreProvincias);
                     spinner.setAdapter(adapter);
 
                 }
@@ -135,6 +141,7 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
         }
 
     }
+
     private ArrayList<Provincias> conectarProvincias() throws InterruptedException {
         ClienteThread clienteThread = new ClienteThread();
         Thread thread = new Thread(clienteThread);
@@ -163,4 +170,10 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
             Toast.makeText(getApplicationContext(), "Error_comunicación", Toast.LENGTH_SHORT).show();
         }
         return ret;
-    }}
+    }
+
+    public void Mostrar_informacion() {
+        Intent Mostrar_informacion = new Intent(this, Mostrar_Informacion.class);
+        startActivity(Mostrar_informacion);
+    }
+}
