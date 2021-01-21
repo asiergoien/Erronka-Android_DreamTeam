@@ -34,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imagen"
         android:layout_width="219dp"
         android:layout_height="216dp"
         android:layout_marginStart="115dp"
@@ -43,30 +43,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:srcCompat="@drawable/patata_amore"
-        tools:srcCompat="@drawable/patata_amore" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="65dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/thefullreflexcamera_slr_camera_4626" />
+        tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="64dp"
         android:layout_height="55dp"
-        android:layout_marginStart="315dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        android:layout_marginStart="171dp"
+        android:layout_marginTop="37dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/imagen"
         app:srcCompat="@drawable/arrow_right" />
 
     <ImageView
@@ -74,9 +60,32 @@
         android:layout_width="64dp"
         android:layout_height="55dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="37dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imagen"
         app:srcCompat="@drawable/arrow_left" />
+
+    <ImageButton
+        android:id="@+id/btnCamara"
+        android:layout_width="72dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:cropToPadding="false"
+        android:onClick="TomarFoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/thefullreflexcamera_slr_camera_4626" />
+
+    <Button
+        android:id="@+id/cargarFoto"
+        android:layout_width="93dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="55dp"
+        android:onClick="verFoto"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
