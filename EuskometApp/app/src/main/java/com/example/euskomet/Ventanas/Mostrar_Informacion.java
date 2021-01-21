@@ -52,10 +52,11 @@ public class Mostrar_Informacion extends AppCompatActivity {
         startActivity(Fotos);
 
     }
+    */
     public void volver(View view) {
         Intent intent = new Intent(this,MenuPrincipal.class);
         startActivity(intent);
     }
 
- */
+
 }

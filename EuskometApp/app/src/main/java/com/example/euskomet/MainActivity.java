@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.euskomet.Ventanas.Login;
+import com.example.euskomet.Ventanas.Registro;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void cambioPantallaLogin(View view) {
 
-        Intent intent = new Intent(this,Login.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 
     public void cambioPantallaRegistro(View view) {
 
-        Intent intent = new Intent(this,Registro.class);
+        Intent intent = new Intent(this, Registro.class);
         startActivity(intent);
     }
 

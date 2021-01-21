@@ -66,8 +66,8 @@
 
     <!-- Fotos -->
     <string name="Titulo_Fotos">Ejemplo</string>
-    <string name="boton_dere">derecha</string>
-    <string name="boton_izk">izkierda</string>
+    <string name="guardar_foto">Guardar foto</string>
+
 
 
 </resources>

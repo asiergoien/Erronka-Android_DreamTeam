@@ -41,9 +41,9 @@ public class ClienteThread implements Runnable {
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //Aqui pondriamos la IP y puerto.
-            sIP = "192.168.106.12";  //Asier Klase
+           // sIP = "192.168.106.12";  //Asier Klase
             //sIP= "localhost";
-           // sIP= "192.168.0.11"; // Asier casa
+            sIP= "192.168.0.11"; // Asier casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
             String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
@@ -169,15 +169,27 @@ public class ClienteThread implements Runnable {
         public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
             String selec = spinner.getSelectedItem().toString();
             if (selec.equals("Bizkaia")) {
-                oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Bizkaia, null);
+                oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Bizkaia, new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Municipio item) {
+                        Mostrar_informacion();
+                        Log.i("tag", "   ----------------------------------------------------     Bizkaia : ");
+                    }
+                });
             } else if (selec.equals("Gipuzkoa")) {
-                oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Gipuzkoa, null);
+                oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Gipuzkoa, new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Municipio item) {
+                        Mostrar_informacion();
+                        Log.i("tag", "   ----------------------------------------------------     Gipuzkoa : ");
+                    }
+                });
             } else if (selec.equals("Araba")) {
                 oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Araba, new OnItemClickListener() {
                     @Override
                     public void onItemClick(Municipio item) {
                         Mostrar_informacion();
-
+                        Log.i("tag", "   ----------------------------------------------------     Araba : ");
                     }
                 });
             }

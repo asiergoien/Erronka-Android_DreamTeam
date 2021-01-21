@@ -25,9 +25,9 @@ public class ClienteThreadEspaciosNaturales implements Runnable {
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //Aqui pondriamos la IP y puerto.
-            sIP = "192.168.106.12";  //Asier Klase
+            //sIP = "192.168.106.12";  //Asier Klase
             //sIP= "localhost";
-            // sIP= "192.168.0.11"; // Asier casa
+             sIP= "192.168.0.11"; // Asier casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
             String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";

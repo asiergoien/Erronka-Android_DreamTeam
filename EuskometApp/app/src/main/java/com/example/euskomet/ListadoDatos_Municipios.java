@@ -1,4 +1,4 @@
-package com.example.euskomet;
+ package com.example.euskomet;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,7 +18,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ListadoDatos_Municipios extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
+//public class ListadoDatos_Municipios extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
+public class ListadoDatos_Municipios extends AppCompatActivity{
 
     private ConnectivityManager connectivityManager = null;
 
@@ -42,7 +43,7 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
         oRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         spinner = (Spinner) findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener(this);
+       // spinner.setOnItemSelectedListener(this);
 
         conectarOnClick();
 
@@ -77,24 +78,41 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
         }
 
     }
-
+/*
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
         String selec = spinner.getSelectedItem().toString();
         if (selec.equals("Bizkaia")) {
-            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Bizkaia, null);
-        } else if (selec.equals("Gipuzkoa")) {
-            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Gipuzkoa, null);
-        } else if (selec.equals("Araba")) {
-            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Araba, new OnItemClickListener() {
+            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Bizkaia, new OnItemClickListener() {
                 @Override
                 public void onItemClick(Municipio item) {
                     Mostrar_informacion();
+                    Log.i("tag", "   ----------------------------------------------------     Bizkaia : ");
+                }
+            });
+        } else if (selec.equals("Gipuzkoa")) {
+            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Gipuzkoa, new OnItemClickListener() {
+                @Override
+                public void onItemClick(Municipio item) {
+                    Mostrar_informacion();
+                    Log.i("tag", "   ----------------------------------------------------     Gipuzkoa : ");
+                }
+            });
+        } else if (selec.equals("Araba")) {
+            oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Araba, new OnItemClickListener() {
+
+                @Override
+                public void onItemClick(Municipio item) {
+                    Mostrar_informacion();
+                    Log.i("tag", "   ----------------------------------------------------     Araba : ");
+
 
                 }
             });
         }
         oRecyclerView.setAdapter(oListaAdapter);
     }
+
+ */
 
     public void onNothingSelected(AdapterView<?> parent) {
 
@@ -172,8 +190,5 @@ public class ListadoDatos_Municipios extends AppCompatActivity implements Adapte
         return ret;
     }
 
-    public void Mostrar_informacion() {
-        Intent Mostrar_informacion = new Intent(this, Mostrar_Informacion.class);
-        startActivity(Mostrar_informacion);
-    }
+
 }

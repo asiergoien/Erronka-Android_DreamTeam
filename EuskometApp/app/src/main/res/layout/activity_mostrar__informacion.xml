@@ -1,57 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-    <androidx.constraintlayout.widget.ConstraintLayout tools:context=".Ventanas.Mostrar_Informacion" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <TextView android:layout_height="35dp" android:layout_width="119dp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="1.0" app:layout_constraintEnd_toEndOf="parent" android:textStyle="bold" android:textSize="24sp" android:textAllCaps="true" android:textAlignment="center" android:text="@string/titulo" android:fontFamily="@font/abeezee" android:layout_marginEnd="145dp" android:layout_marginTop="36dp" android:layout_marginStart="145dp" android:id="@+id/textView6"/>
-
-    <TextView android:layout_height="19dp" android:layout_width="58dp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent" android:textStyle="bold" android:text="@string/dato1" android:layout_marginTop="120dp" android:layout_marginStart="32dp" android:id="@+id/textView8"/>
-
-    <TextView android:layout_height="19dp" android:layout_width="58dp" app:layout_constraintStart_toStartOf="parent" android:textStyle="bold" android:text="@string/dato2" android:layout_marginTop="22dp" android:layout_marginStart="32dp" android:id="@+id/textView10" app:layout_constraintTop_toBottomOf="@+id/textView8"/>
+    <androidx.constraintlayout.widget.ConstraintLayout tools:context=".Ventanas.Mostrar_Informacion"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
-        android:id="@+id/textView11"
-        android:layout_width="58dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="27dp"
-        android:text="@string/dato3"
+        android:id="@+id/textView6"
+        android:layout_width="119dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="145dp"
+        android:fontFamily="@font/abeezee"
+        android:text="@string/titulo"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="230dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="67dp"
-        android:text="Ejemplo de texto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="230dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="67dp"
-        android:text="Ejemplo de texto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
-        android:layout_width="263dp"
-        android:layout_height="74dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="267dp"
+        android:layout_height="132dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:gravity="start|top"
@@ -60,6 +37,67 @@
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="230dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="67dp"
+        android:text="Ejemplo de texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="58dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/dato2"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="58dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="27dp"
+        android:text="@string/dato3"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextMultiLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="230dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="67dp"
+        android:text="Ejemplo de texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="58dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="72dp"
+        android:text="@string/dato1"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnCom"
@@ -80,7 +118,7 @@
         android:layout_width="234dp"
         android:layout_height="50dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="100dp"
         android:onClick="Fotos"
         android:text="@string/fotos"
@@ -94,13 +132,11 @@
         android:id="@+id/button13"
         android:layout_width="112dp"
         android:layout_height="43dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/atras"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCom" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnfav"
