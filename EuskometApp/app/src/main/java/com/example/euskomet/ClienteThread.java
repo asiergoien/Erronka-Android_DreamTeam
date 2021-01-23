@@ -41,9 +41,10 @@ public class ClienteThread implements Runnable {
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //Aqui pondriamos la IP y puerto.
-           // sIP = "192.168.106.12";  //Asier Klase
+            //sIP = "192.168.106.12";  //Asier Klase
             //sIP= "localhost";
-            sIP= "192.168.0.11"; // Asier casa
+            //sIP= "192.168.0.11"; // Asier casa
+            sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
             String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
@@ -172,7 +173,7 @@ public class ClienteThread implements Runnable {
                 oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Bizkaia, new OnItemClickListener() {
                     @Override
                     public void onItemClick(Municipio item) {
-                        Mostrar_informacion();
+                        Mostrar_informacion(item);
                         Log.i("tag", "   ----------------------------------------------------     Bizkaia : ");
                     }
                 });
@@ -180,7 +181,7 @@ public class ClienteThread implements Runnable {
                 oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Gipuzkoa, new OnItemClickListener() {
                     @Override
                     public void onItemClick(Municipio item) {
-                        Mostrar_informacion();
+                        Mostrar_informacion(item);
                         Log.i("tag", "   ----------------------------------------------------     Gipuzkoa : ");
                     }
                 });
@@ -188,7 +189,7 @@ public class ClienteThread implements Runnable {
                 oListaAdapter = new MunicipioAdapter(arrayDatosMunicipio_Araba, new OnItemClickListener() {
                     @Override
                     public void onItemClick(Municipio item) {
-                        Mostrar_informacion();
+                        Mostrar_informacion(item);
                         Log.i("tag", "   ----------------------------------------------------     Araba : ");
                     }
                 });
@@ -272,8 +273,9 @@ public class ClienteThread implements Runnable {
             return ret;
         }
 
-        public void Mostrar_informacion() {
+        public void Mostrar_informacion(Municipio item) {
             Intent Mostrar_informacion = new Intent(this, Mostrar_Informacion.class);
+            Mostrar_informacion.putExtra("cod", item.getCod_mun());
             startActivity(Mostrar_informacion);
         }
     }

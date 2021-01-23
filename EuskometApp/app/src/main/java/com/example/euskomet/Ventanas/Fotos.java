@@ -23,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.euskomet.Conexion;
 import com.example.euskomet.R;
 
 import java.io.File;
@@ -30,8 +31,19 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Fotos extends AppCompatActivity {
 
@@ -62,14 +74,25 @@ public class Fotos extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==101 ){
-            if (resultCode == Activity.RESULT_OK && data!=null){
+            if (resultCode == Activity.RESULT_OK && data!=null) {
 
                 imgBitmap= (Bitmap) data.getExtras().get("data");
                 imagen.setImageBitmap(imgBitmap);
+                File outputDir = this.getCacheDir();
+                try {
+                    foto = File.createTempFile(new Date().toInstant().toString(), "jpeg", outputDir);
+                    FileOutputStream fos = new FileOutputStream(foto);
+                    imgBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                    guardarBBDD();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
 
             }
             Bundle extras = data.getExtras();
@@ -80,44 +103,44 @@ public class Fotos extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
 
-    public void guardarFoto(View view){
+    public void guardarFoto(View view) {
         OutputStream fos = null;
         File file = null;
         //Este if es para saber que api tiene y dependiendo de cual se hara una manera o otra
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             ContentResolver resolver = getContentResolver();
-            ContentValues values= new ContentValues();
-            String Filename= new Date().toInstant().toString();
-            Log.i("Filename", "guardarFoto: ---->"+Filename);
-            values.put(MediaStore.Images.Media.DISPLAY_NAME,Filename);
-            values.put(MediaStore.Images.Media.MIME_TYPE,"image/jpeg");
-            values.put(MediaStore.Images.Media.RELATIVE_PATH,"Pictures/Euskomet");
-            values.put(MediaStore.Images.Media.IS_PENDING,1);
-            Uri collecUri= MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
-            Uri imageUri = resolver.insert(collecUri,values);
+            ContentValues values = new ContentValues();
+            String Filename = new Date().toInstant().toString();
+            Log.i("Filename", "guardarFoto: ---->" + Filename);
+            values.put(MediaStore.Images.Media.DISPLAY_NAME, Filename);
+            values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+            values.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/Euskomet");
+            values.put(MediaStore.Images.Media.IS_PENDING, 1);
+            Uri collecUri = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+            Uri imageUri = resolver.insert(collecUri, values);
             try {
-                fos= resolver.openOutputStream(imageUri);
+                fos = resolver.openOutputStream(imageUri);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
             values.clear();
-            values.put(MediaStore.Images.Media.IS_PENDING,0);
-            resolver.update(imageUri,values,null,null);
-        }else{
-                String imageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-                String Filename= new Date().toInstant().toString();
-                file = new File(imageDir,Filename);
-                try {
-                    fos = new FileOutputStream(file);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+            values.put(MediaStore.Images.Media.IS_PENDING, 0);
+            resolver.update(imageUri, values, null, null);
+        } else {
+            String imageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+            String Filename = new Date().toInstant().toString();
+            file = new File(imageDir, Filename);
+            try {
+                fos = new FileOutputStream(file);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        boolean guardado= imgBitmap.compress(Bitmap.CompressFormat.JPEG,100,fos);
-        if (guardado){
-            Toast.makeText(this,"Exito al guardar la imagen",Toast.LENGTH_SHORT).show();
+        boolean guardado = imgBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+        if (guardado) {
+            Toast.makeText(this, "Exito al guardar la imagen", Toast.LENGTH_SHORT).show();
         }
-        if (fos!=null){
+        if (fos != null) {
             try {
                 fos.flush();
                 fos.close();
@@ -126,14 +149,38 @@ public class Fotos extends AppCompatActivity {
             }
 
         }
-        if (file!=null){
-            MediaScannerConnection.scanFile(this,new String[]{file.toString()},null,null);
+        if (file != null) {
+            MediaScannerConnection.scanFile(this, new String[]{file.toString()}, null, null);
         }
-
-
 
 
     }
 
+    public void guardarBBDD() {
+
+        int tam = (int) foto.length();
+        byte leido[] = new byte[tam];
+        try {
+            FileInputStream f = new FileInputStream(foto);
+            f.read(leido);
+            Bundle extra = getIntent().getExtras();
+            int cod = 0;
+            if (extra != null) {
+                cod = extra.getInt("cod");
+            }
+
+            Conexion con = new Conexion(cod, tam, leido);
+            Thread t = new Thread(con);
+            t.start();
+            t.join();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
