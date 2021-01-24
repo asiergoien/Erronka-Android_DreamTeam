@@ -29,6 +29,7 @@
         android:layout_height="43dp"
         android:layout_marginStart="56dp"
         android:layout_marginBottom="61dp"
+        android:onClick="volver"
         android:text="@string/atras"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

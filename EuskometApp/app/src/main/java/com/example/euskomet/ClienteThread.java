@@ -42,9 +42,9 @@ public class ClienteThread implements Runnable {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //Aqui pondriamos la IP y puerto.
             //sIP = "192.168.106.12";  //Asier Klase
-            //sIP= "localhost";
-            //sIP= "192.168.0.11"; // Asier casa
-            sIP = "192.168.0.13";  //Aitor Casa
+            //sIP = "localhost";
+            sIP= "192.168.0.11"; // Asier casa
+            //sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
             String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
@@ -275,7 +275,11 @@ public class ClienteThread implements Runnable {
 
         public void Mostrar_informacion(Municipio item) {
             Intent Mostrar_informacion = new Intent(this, Mostrar_Informacion.class);
-            Mostrar_informacion.putExtra("cod", item.getCod_mun());
+            Mostrar_informacion.putExtra("Cod_mun", item.getCod_mun());
+            Mostrar_informacion.putExtra("desc",item.getDesc());
+            Mostrar_informacion.putExtra("nombre",item.getNombre());
+            Mostrar_informacion.putExtra("Cod_prov",item.getCod_prov());
+
             startActivity(Mostrar_informacion);
         }
     }

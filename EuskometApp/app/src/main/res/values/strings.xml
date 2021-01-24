@@ -48,11 +48,11 @@
 
     <string name="titulo">Ejemplo</string>
 
-    <string name="dato1">Dato1</string>
+    <string name="dato1">Nombre</string>
 
-    <string name="dato2">Dato2</string>
+    <string name="dato2">Provincia</string>
 
-    <string name="dato3">Dato3</string>
+    <string name="dato3">Descripcion</string>
 
     <string name="fotos">Fotos</string>
 

@@ -47,6 +47,7 @@ import java.sql.SQLException;
 
 public class Fotos extends AppCompatActivity {
 
+
     private ImageButton btnCamara;
     private ImageView imagen;
     public File foto;
@@ -153,27 +154,23 @@ public class Fotos extends AppCompatActivity {
             MediaScannerConnection.scanFile(this, new String[]{file.toString()}, null, null);
         }
 
-
     }
 
     public void guardarBBDD() {
-
+      Bundle bundle;
         int tam = (int) foto.length();
         byte leido[] = new byte[tam];
+
         try {
             FileInputStream f = new FileInputStream(foto);
             f.read(leido);
-            Bundle extra = getIntent().getExtras();
-            int cod = 0;
-            if (extra != null) {
-                cod = extra.getInt("cod");
+            int cod =  getIntent().getIntExtra("Cod_mun",-1);
+            if (cod > 0){
+                Conexion con = new Conexion(cod, tam, leido);
+                Thread t = new Thread(con);
+                t.start();
+                t.join();
             }
-
-            Conexion con = new Conexion(cod, tam, leido);
-            Thread t = new Thread(con);
-            t.start();
-            t.join();
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -182,5 +179,20 @@ public class Fotos extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void volver(View view) {
+        String  nombre = getIntent().getStringExtra("nombre");
+        int cod_mun =  getIntent().getIntExtra("Cod_mun",-1);
+        int cod_prov =  getIntent().getIntExtra("Cod_prov",-1);
+        String desc = getIntent().getStringExtra("desc");
+        Intent intent = new Intent(this,Mostrar_Informacion.class);
+        intent.putExtra("Cod_mun", cod_mun);
+        intent.putExtra("desc",desc);
+        intent.putExtra("nombre",nombre);
+        intent.putExtra("Cod_prov",cod_prov);
+        startActivity(intent);
+
+    }
+
 
 }

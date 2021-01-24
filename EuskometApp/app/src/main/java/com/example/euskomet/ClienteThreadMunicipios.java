@@ -26,9 +26,9 @@ public class ClienteThreadMunicipios implements Runnable {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //Aqui pondriamos la IP y puerto.
             //sIP = "192.168.106.12";  //Asier Klase
-            //sIP= "localhost";
-            // sIP= "192.168.0.11"; // Asier casa
-            sIP = "192.168.0.13";  //Aitor Casa
+            //sIP = "localhost";
+            sIP= "192.168.0.11"; // Asier casa
+            //sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
             String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
@@ -49,9 +49,10 @@ public class ClienteThreadMunicipios implements Runnable {
 
                 Integer cod = rs.getInt("cod_mun");
                 String nombre =  rs.getString("nombre");
+                String desc =  rs.getString("descripcion");
                 Integer prov = rs.getInt("cod_prov");
 
-                Municipio mun = new Municipio(cod, nombre, prov);
+                Municipio mun = new Municipio(cod, nombre, prov,desc);
                 munArrayList.add(mun);
             }
 

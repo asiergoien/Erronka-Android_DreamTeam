@@ -32,22 +32,22 @@ public class Conexion implements Runnable {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //Aqui pondriamos la IP y puerto.
             //sIP = "192.168.106.12";  //Asier Klase
-            sIP = "localhost";
-            //sIP= "192.168.0.11"; // Asier casa
+            //sIP = "localhost";
+            sIP= "192.168.0.11"; // Asier casa
             //sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
-            String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
+            //String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
 //            con = DriverManager.getConnection( url, "root", "");
             // con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
             Log.i("mysql ", "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "usuario" + "1234");
-            con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
 
-            String sql = "INSERT INTO fotos_municipios (cod_foto, cod_mun, tam, archivo) VALUES(cod_mun, " + cod + ", " + tam + ", " + leido + ")";
+            String sql = "INSERT INTO fotos_municipios (cod_mun,tam,archivo) VALUES("+cod+","+ tam +",'" + leido + "')";
             Log.i("conexion", con.toString());
             PreparedStatement st = con.prepareStatement(sql);
             st.execute();
-
+            con.setAutoCommit(false);
             con.commit();
             con.close();
         } catch (IllegalAccessException illegalAccessException) {

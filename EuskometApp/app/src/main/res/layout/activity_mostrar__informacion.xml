@@ -25,21 +25,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/Multiline_Desc"
         android:layout_width="267dp"
         android:layout_height="132dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto "
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_Provincia" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textview_Provincia"
         android:layout_width="230dp"
         android:layout_height="26dp"
         android:layout_marginStart="24dp"
@@ -47,14 +47,14 @@
         android:layout_marginEnd="67dp"
         android:text="Ejemplo de texto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_Nombre" />
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="58dp"
-        android:layout_height="19dp"
+        android:layout_width="66dp"
+        android:layout_height="23dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="16dp"
         android:text="@string/dato2"
@@ -64,27 +64,25 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="58dp"
+        android:layout_width="79dp"
         android:layout_height="19dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="27dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
         android:text="@string/dato3"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextMultiLine"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Multiline_Desc"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textview_Nombre"
         android:layout_width="230dp"
         android:layout_height="26dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="67dp"
         android:text="Ejemplo de texto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -126,7 +124,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/Multiline_Desc" />
 
     <Button
         android:id="@+id/button13"
@@ -134,6 +132,7 @@
         android:layout_height="43dp"
         android:layout_marginStart="48dp"
         android:layout_marginBottom="40dp"
+        android:onClick="volver"
         android:text="@string/atras"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

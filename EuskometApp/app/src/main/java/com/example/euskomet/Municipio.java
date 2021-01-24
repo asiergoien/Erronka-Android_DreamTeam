@@ -5,11 +5,13 @@ public class Municipio {
     private int cod_mun;
     private String nombre;
     private int cod_prov;
+    private String desc;
 
-    public Municipio(int cod_mun, String nombre, int cod_prov) {
+    public Municipio(int cod_mun, String nombre, int cod_prov,String desc ) {
         this.cod_mun = cod_mun;
         this.nombre = nombre;
         this.cod_prov = cod_prov;
+        this.desc   = desc;
     }
 
     public int getCod_mun() {
@@ -30,6 +32,14 @@ public class Municipio {
 
     public int getCod_prov() {
         return cod_prov;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public void setCod_prov(int cod_prov) {
