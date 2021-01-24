@@ -1,5 +1,6 @@
 package com.example.euskomet;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,42 +10,48 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 public class EspNaturalesAdapter extends RecyclerView.Adapter<EspNaturalesAdapter.MyViewHolder> {
-    private ArrayList<Municipio> arrayMunicipio = new ArrayList<Municipio>();
-    public OnItemClickListener listener = null;
+    private ArrayList<EspacioNatural> arrayEspNat = new ArrayList<EspacioNatural>();
+    public OnItemClickListenerEspNat listener = null;
 
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView cod_mun;
+        public TextView tipo;
+        public TextView cod_esp;
         public TextView nombre;
+
+
         public MyViewHolder(View view) {
             super(view);
-
-            cod_mun = (TextView) view.findViewById(R.id.cod_mun);
+            cod_esp = (TextView) view.findViewById(R.id.cod_esp_natural);
             nombre = (TextView) view.findViewById(R.id.nombre);
+            tipo = (TextView) view.findViewById(R.id.tipo);
 
         }
     }
 
-    public EspNaturalesAdapter(ArrayList<Municipio> munList, OnItemClickListener listener) {
-        this.arrayMunicipio = munList;
+    public EspNaturalesAdapter(ArrayList<EspacioNatural> munList, OnItemClickListenerEspNat listener) {
+        this.arrayEspNat = munList;
         this.listener = listener;
     }
 
-    public EspNaturalesAdapter(ArrayList<Municipio> munList) {
-        this.arrayMunicipio = munList;
+    public EspNaturalesAdapter(ArrayList<EspacioNatural> munList) {
+        this.arrayEspNat = munList;
     }
 
-    public ArrayList<Municipio> getArrayMunicipio() {
-        return arrayMunicipio;
+    public ArrayList<EspacioNatural> getArrayMunicipio() {
+        return arrayEspNat;
     }
 
     @Override
     public void onBindViewHolder( MyViewHolder holder, int position) {
-        Municipio m = arrayMunicipio.get(position);
-        holder.cod_mun.setText(String.valueOf(m.getCod_mun()));
+        EspacioNatural m = arrayEspNat.get(position);
+        Log.i(TAG, "onBindViewHolder: he entrado en el bind");
+        holder.cod_esp.setText(String.valueOf(m.getCod_esp_natural()));
         holder.nombre.setText(m.getNombre());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,13 +63,13 @@ public class EspNaturalesAdapter extends RecyclerView.Adapter<EspNaturalesAdapte
     }
     @Override
     public int getItemCount() {
-        return arrayMunicipio.size();
+        return arrayEspNat.size();
     }
 
 
     @Override
     public MyViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.linea_municipios, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.linea_esp_naturales, parent, false);
         return new MyViewHolder(v);
     }
 

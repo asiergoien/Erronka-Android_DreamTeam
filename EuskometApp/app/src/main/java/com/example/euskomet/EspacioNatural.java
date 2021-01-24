@@ -6,13 +6,14 @@ public class EspacioNatural {
     private String nombre;
     private String tipo;
     private int cod_mun;
+    private String desc;
 
     // Este constructor es solo para poder llenar la lista con datos.
-    public EspacioNatural(int cod_esp_natural, String nombre, String tipo, int cod_mun) {
+    public EspacioNatural(int cod_esp_natural, String nombre, String tipo, String desc) {
         this.cod_esp_natural = cod_esp_natural;
         this.nombre = nombre;
         this.tipo = tipo;
-        this.cod_mun = cod_mun;
+        this.desc = desc;
     }
 
     public int getCod_esp_natural() {
@@ -39,11 +40,11 @@ public class EspacioNatural {
         this.tipo = tipo;
     }
 
-    public int getCod_mun() {
-        return cod_mun;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setCod_mun(int cod_mun) {
-        this.cod_mun = cod_mun;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

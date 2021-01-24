@@ -16,6 +16,7 @@
         <activity android:name=".Ventanas.Fotos"></activity>
         <activity android:name=".Ventanas.Mostrar_Informacion" />
         <activity android:name=".ClienteThread$ListadoDatos_Municipios" />
+        <activity android:name=".ClienteThreadTipo$ListadoDatos_Municipios" />
         <activity android:name=".Ventanas.MenuPrincipal" />
         <activity android:name=".Ventanas.RecuperarPswd" />
         <activity android:name=".Ventanas.Registro" />

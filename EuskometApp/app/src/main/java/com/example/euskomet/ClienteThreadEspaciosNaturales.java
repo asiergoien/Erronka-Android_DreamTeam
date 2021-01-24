@@ -50,9 +50,9 @@ public class ClienteThreadEspaciosNaturales implements Runnable {
                 Integer cod = rs.getInt("cod_esp_natural");
                 String nombre =  rs.getString("nombre");
                 String tipo = rs.getString("tipo");
-                Integer cod_mun = rs.getInt("cod_mun");
+                String desc = rs.getString("descripcion");
 
-                EspacioNatural espNat = new EspacioNatural(cod, nombre, tipo, cod_mun);
+                EspacioNatural espNat = new EspacioNatural(cod, nombre, tipo, desc);
                 espNatArrayList.add(espNat);
             }
 

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.euskomet.ClienteThread;
+import com.example.euskomet.ClienteThreadEspaciosNaturales;
+import com.example.euskomet.ClienteThreadTipo;
 import com.example.euskomet.R;
 
 public class MenuPrincipal extends AppCompatActivity {
@@ -36,7 +38,8 @@ public class MenuPrincipal extends AppCompatActivity {
 
     }
     public void Espacios_naturales(View view){
-
+        Intent ListadoDatos = new Intent(this, ClienteThreadTipo.ListadoDatos_Municipios.class);
+        startActivity(ListadoDatos);
     }
     public void Favoritos(View view){
 
