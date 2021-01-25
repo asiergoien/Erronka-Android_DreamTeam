@@ -12,18 +12,17 @@ import java.util.ArrayList;
 public class InsertDatos implements Runnable {
     private String sResultado;
     private static String sql;
-    private static  Integer tipo;
 
-    public InsertDatos(String sql, int tipo ) {
+    public InsertDatos(String sql) {
         this.sql= sql;
-        this.tipo = tipo;
-    }
 
+    }
     private boolean bol;
 
 
     @Override
     public void run() {
+        bol = false;
         ResultSet rs = null;
         PreparedStatement st = null;
         Connection con = null;
@@ -33,22 +32,19 @@ public class InsertDatos implements Runnable {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //Aqui pondriamos la IP y puerto.
-            sIP = "192.168.106.12";  //Asier Klase
+            //sIP = "192.168.106.12";  //Asier Klase
             //sIP = "localhost";
-            //sIP= "192.168.0.11"; // Asier casa
+            sIP= "192.168.0.11"; // Asier casa
             //sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
-            String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
-//            con = DriverManager.getConnection( url, "root", "");
-            // con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
             Log.i("mysql ", "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "usuario" + "1234");
             con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
 
             st = con.prepareStatement(sql);
-            bol=  st.execute();
+            st.execute();
 
-
+            bol = true;
 
         } catch (ClassNotFoundException e) {
             Log.e("ClassNotFoundException", "");

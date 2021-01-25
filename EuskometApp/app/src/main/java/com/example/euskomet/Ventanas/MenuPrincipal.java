@@ -30,6 +30,7 @@ public class MenuPrincipal extends AppCompatActivity {
     }
     public void Municipios(View view){
         Intent ListadoDatos = new Intent(this, Listado_datosMun.class);
+        ListadoDatos.putExtra("cod_usuario", getIntent().getStringExtra("cod_usuario"));
         startActivity(ListadoDatos);
 
     }
@@ -38,13 +39,14 @@ public class MenuPrincipal extends AppCompatActivity {
     }
     public void Espacios_naturales(View view){
         Intent ListadoDatos = new Intent(this, Listado_Espacios_Naturales.class);
+        ListadoDatos.putExtra("cod_usuario", getIntent().getStringExtra("cod_usuario"));
         startActivity(ListadoDatos);
     }
     public void Favoritos(View view){
 
     }
     public void volver(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

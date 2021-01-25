@@ -2,6 +2,8 @@ package com.example.euskomet;
 
 import android.util.Log;
 
+import com.example.euskomet.Ventanas.Usuario;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,9 +35,9 @@ public class CargarDatos implements Runnable {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //Aqui pondriamos la IP y puerto.
-            sIP = "192.168.106.12";  //Asier Klase
+            //sIP = "192.168.106.12";  //Asier Klase
             //sIP = "localhost";
-            //sIP= "192.168.0.11"; // Asier casa
+            sIP= "192.168.0.11"; // Asier casa
             //sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
@@ -80,11 +82,15 @@ public class CargarDatos implements Runnable {
 
                     EspacioNatural espNat = new EspacioNatural(cod, nombre, tipo, desc);
                     ClienteThread_ArrayList.add(espNat);
-
+                }else if (tipo==5){//Coger todos los usuarios
+                    Integer cod_user = rs.getInt("cod_user");
+                    String nombre  = rs.getString("nombre");
+                    String contra = rs.getString("contra");
+                    String pregunta = rs.getString("pregunta");
+                    String respuesta = rs.getString("respuesta");
+                    Usuario us1 = new Usuario(cod_user,nombre,contra,pregunta,respuesta);
+                    ClienteThread_ArrayList.add(us1);
                 }
-
-
-
             }
 
         } catch (ClassNotFoundException e) {

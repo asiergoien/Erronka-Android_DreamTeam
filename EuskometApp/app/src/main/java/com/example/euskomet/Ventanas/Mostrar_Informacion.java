@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Notification;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +13,8 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.example.euskomet.ClienteThread;
+
+import com.example.euskomet.InsertDatos;
 import com.example.euskomet.Municipio;
 import com.example.euskomet.R;
 
@@ -32,7 +34,7 @@ public class Mostrar_Informacion extends AppCompatActivity {
     public static EditText multilinea;
 
     public static  String nombre;
-    public static  int cod_mun;
+    public static  int cod;
     public static  int cod_prov;
     public static String desc;
 
@@ -66,15 +68,15 @@ public class Mostrar_Informacion extends AppCompatActivity {
         super.onStart();
         nombre =  getIntent().getStringExtra("nombre");
         desc = getIntent().getStringExtra("desc");
-        cod_mun =  getIntent().getIntExtra("Cod_mun",-1);
+        cod =  getIntent().getIntExtra("Cod_mun",-1);
         cod_prov =  getIntent().getIntExtra("Cod_prov",-1);
         cargarDatos();
     }
 
     public void Fotos(View view){
-        Log.i(TAG, "Fotos: ------->"+cod_mun);
+        Log.i(TAG, "Fotos: ------->"+cod);
         Intent Fotos = new Intent(this, Fotos.class);
-        Fotos.putExtra("Cod_mun", cod_mun);
+        Fotos.putExtra("Cod_mun", cod);
         Fotos.putExtra("desc",desc);
         Fotos.putExtra("nombre",nombre);
         Fotos.putExtra("Cod_prov",cod_prov);
@@ -91,13 +93,20 @@ public class Mostrar_Informacion extends AppCompatActivity {
         Intent Fotos = new Intent(this, ClienteThread.ListadoDatos_Municipios.class);
         startActivity(Fotos);
 
-    }
-    public void Favoritos(View view){
-        Intent Fotos = new Intent(this, ClienteThread.ListadoDatos_Municipios.class);
-        startActivity(Fotos);
+    }*/
+    public void Favoritos(View view) throws InterruptedException {
 
+        String fav = getIntent().getStringExtra("fav");
+        String sql= "insert into "+fav+" (cod_relacion, "+(fav.equals("favoritos_mun") ? "cod_est" : (fav.equals("favoritos_esp") ? "cod_esp_natural" : null))+", cod_user) values('"+cod+"-"+getIntent().getStringExtra("cod_usuario")+"','"+cod+"','"+getIntent().getStringExtra("cod_usuario")+"')";
+        InsertDatos in1 = new InsertDatos(sql);
+        Thread thread = new Thread(in1);
+        thread.start();
+        thread.join(); // Esperar respuesta del servidor...
+        if (in1.isBol()) {
+            btnfav.setBackgroundColor(Color.YELLOW);
+        }
     }
-    */
+
     public void volver(View view) {
         Intent intent = new Intent(this,MenuPrincipal.class);
         startActivity(intent);

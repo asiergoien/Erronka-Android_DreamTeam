@@ -24,85 +24,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-//public class ClienteThreadTipo implements Runnable {
-//    private String sResultado;
-//    public ClienteThreadTipo() {}
-//
-//    private ArrayList<String> tipoArrayList = new ArrayList<String>();
-//
-//    @Override
-//    public void run() {
-//        ResultSet rs = null;
-//        PreparedStatement st = null;
-//        Connection con = null;
-//        String sIP;
-//        String sPuerto;
-//        String sBBDD;
-//        try{
-//            Class.forName("com.mysql.jdbc.Driver").newInstance();
-//            //Aqui pondriamos la IP y puerto.
-//            sIP = "192.168.106.12";  //Asier Klase
-//            //sIP = "localhost";
-//            //sIP= "192.168.0.11"; // Asier casa
-//            //sIP = "192.168.0.13";  //Aitor Casa
-//            sPuerto = "3306";
-//            sBBDD = "euskomet"; //nombre de la base de datos
-//            String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
-////            con = DriverManager.getConnection( url, "root", "");
-//           // con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
-//            Log.i("mysql ", "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD+ "usuario"+"1234");
-//            con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
-//
-//
-//
-//
-//            // Consulta sencilla en este caso.
-//            String sql = "SELECT DISTINCT tipo FROM espacios_naturales";
-////            String sql = "SELECT * FROM usuarios";
-//            st = con.prepareStatement(sql);
-//            rs = st.executeQuery();
-//
-//            //--
-//            while (rs.next()) {
-//
-//                tipoArrayList.add(rs.getString("tipo"));
-//
-//            }
-//
-//        } catch (ClassNotFoundException e) {
-//            Log.e("ClassNotFoundException", "");
-//            e.printStackTrace();
-//        } catch (SQLException e) {
-//            Log.e("SQLException", "");
-//            e.printStackTrace();
-//        } catch (Exception e) {
-//            Log.e("Exception", "");
-//            e.printStackTrace();
-//        } finally {
-//            // Intentamos cerrar _todo.
-//            try {
-//                // Cerrar ResultSet
-//                if(rs!=null) {
-//                    rs.close();
-//                }
-//                // Cerrar PreparedStatement
-//                if(st!=null) {
-//                    st.close();
-//                }
-//                // Cerrar Connection
-//                if(con!=null) {
-//                    con.close();
-//                }
-//            } catch (Exception e) {
-//                Log.e("Exception_cerrando todo", "");
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
-//    public ArrayList<String> gettipoArrayList() {
-//        return tipoArrayList;
-//    }
 
     public  class Listado_Espacios_Naturales extends AppCompatActivity implements AdapterView.OnItemSelectedListener , AdapterView.OnItemClickListener {
 
@@ -250,7 +172,7 @@ import java.util.ArrayList;
 
         //----------------------------------------------------------- CONECTAR TIPO
         private ArrayList<String> conectarTipo() throws InterruptedException {
-            ClienteThread clienteThread = new ClienteThread("SELECT DISTINCT tipo FROM espacios_naturales", 3);
+            CargarDatos clienteThread = new CargarDatos("SELECT DISTINCT tipo FROM espacios_naturales", 3);
             Thread thread = new Thread(clienteThread);
             thread.start();
             thread.join(); // Esperar respuesta del servidor...
@@ -267,7 +189,7 @@ import java.util.ArrayList;
         //----------------------------------------------------------- CONECTAR ESPACIOS NATURALES
         private ArrayList<EspacioNatural> conectarEsp() throws InterruptedException {
 
-            ClienteThread clienteThread = new ClienteThread("SELECT * FROM espacios_naturales", 4);
+            CargarDatos clienteThread = new CargarDatos("SELECT * FROM espacios_naturales", 4);
             Thread thread = new Thread(clienteThread);
             thread.start();
             thread.join(); // Esperar respuesta del servidor...
@@ -302,6 +224,8 @@ import java.util.ArrayList;
             Mostrar_informacion.putExtra("desc",item.getDesc());
             Mostrar_informacion.putExtra("nombre",item.getNombre());
             Mostrar_informacion.putExtra("tipo",item.getTipo());
+            Mostrar_informacion.putExtra("cod_usuario", getIntent().getStringExtra("cod_usuario"));
+            Mostrar_informacion.putExtra("fav", "favoritos_esp");
 
             startActivity(Mostrar_informacion);
         }

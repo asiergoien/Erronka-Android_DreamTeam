@@ -14,10 +14,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.euskomet.CargarDatos;
+import com.example.euskomet.InsertDatos;
 import com.example.euskomet.R;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import javax.crypto.SecretKey;
 
@@ -61,7 +64,9 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    public void registrar(View view) {
+    public void registrar(View view) throws InterruptedException {
+
+
 
         String usuario = etNombre.getText().toString();
         String contraseña1 = etContraseña1.getText().toString();
@@ -70,25 +75,38 @@ public class Registro extends AppCompatActivity {
         String pregunta = spinPregunta.getSelectedItem().toString();
         String respuesta = etRespuesta.getText().toString();
 
-        MainActivity.preferencias = getSharedPreferences("usuarios", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor=MainActivity.preferencias.edit();
 
-        if ( contraseña1.equals(contraseña2) ) {
-            // Encriptar contraseña
-//            cifrar(contraseña1);
+        Usuario us = new Usuario();
+        us= MirarUsuario(usuario);
 
-            String cifradoStr = "";
-            for (byte b : cifrar(contraseña1)) {
-                cifradoStr += b;
+
+            if ( contraseña1.equals(contraseña2) ) {
+                // Encriptar contraseña
+                if (us == null){
+                String cifradoStr = "";
+
+                for (byte b : cifrar(contraseña1)) {
+                   cifradoStr += b;
+                }
+                //Registrar usuario
+                String sql= "insert into usuarios  (nombre,contra,pregunta,respuesta) values('"+usuario+"','"+cifradoStr+"','"+pregunta+"','"+respuesta+"')";
+                InsertDatos in1 = new InsertDatos(sql);
+                    Thread thread = new Thread(in1);
+                    thread.start();
+                    thread.join(); // Esperar respuesta del servidor...
+                if (in1.isBol()==true){
+                    Toast.makeText(this,"Usuario registrado correctamente",Toast.LENGTH_LONG).show();
+                    etNombre.setText("");
+                    etContraseña1.setText("");
+                    etContraseña2.setText("");
+                    spinPregunta.setSelection(0);
+                    etRespuesta.setText("");
+                    Intent intent = new Intent(this,MainActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(this,"Error al conectar con la base datos",Toast.LENGTH_LONG).show();
+                }
             }
-            //Registrar usuario
-            editor.putString(usuario + "_usuario", usuario).commit();
-            editor.putString(usuario + "_contraseña", cifradoStr).commit();
-            editor.putString(usuario + "_pregunta", pregunta).commit();
-            editor.putString(usuario + "_respuesta", respuesta).commit();
-            finish();
-            Toast.makeText(this,"Usuario registrado correctamente",Toast.LENGTH_LONG).show();
-
         } else {
             Toast.makeText(this,"Las contraseñas no coinciden",Toast.LENGTH_LONG).show();
             etNombre.setText("");
@@ -118,6 +136,34 @@ public class Registro extends AppCompatActivity {
     public void volver(View view) {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
+    }
+    private ArrayList<Usuario> conectarUsuario() throws InterruptedException {
+        CargarDatos clienteThread = new CargarDatos("SELECT * FROM usuarios", 5);
+        Thread thread = new Thread(clienteThread);
+        thread.start();
+        thread.join(); // Esperar respuesta del servidor...
+
+        ArrayList<Usuario> ArrayProv = new ArrayList<Usuario>();
+        ArrayList<Object> viejo = new ArrayList<Object>();
+
+        viejo= clienteThread.getCliemteThread_ArrayList();
+
+        for (Object ob : viejo){
+            ArrayProv.add((Usuario)ob);
+        }
+        return ArrayProv;
+    }
+
+    public Usuario MirarUsuario(String Usuario) throws InterruptedException {
+    ArrayList<Usuario> usuarioArrayList = new ArrayList<Usuario>();
+        usuarioArrayList= (ArrayList<com.example.euskomet.Ventanas.Usuario>) conectarUsuario().clone();
+
+        for (Usuario us1 : usuarioArrayList){
+            if (us1.getNombre().equals(Usuario)){
+                return us1;
+            }
+        }
+        return null;
     }
 
 }

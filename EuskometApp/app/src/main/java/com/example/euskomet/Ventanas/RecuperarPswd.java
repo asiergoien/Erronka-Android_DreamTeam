@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.euskomet.InsertDatos;
 import com.example.euskomet.R;
 
 import java.security.MessageDigest;
@@ -47,9 +48,8 @@ public class RecuperarPswd extends AppCompatActivity {
 
         String respuesta=this.editTextRespuesta.getText().toString();
 
-        MainActivity.preferencias = getSharedPreferences("usuarios", Context.MODE_PRIVATE);
-        this.respuestaGuardada =  MainActivity.preferencias.getString(usuario+"_respuesta", "");
-        if (respuesta.equals(this.respuestaGuardada)) { // comprueba si la respuesta es la misma
+        String Pregunta_us= getIntent().getStringExtra("pregunta");
+        if (respuesta.equals(Pregunta_us)) { // comprueba si la respuesta es la misma
             etContraseña.setVisibility(View.VISIBLE);
             etContraseña2.setVisibility(View.VISIBLE);
             btnRegistrar.setVisibility(View.VISIBLE);
@@ -61,12 +61,10 @@ public class RecuperarPswd extends AppCompatActivity {
     }
 
     public void guardarPswd (View v){
+        String nombre= getIntent().getStringExtra("nombre");
 
         String contraseña1 = etContraseña.getText().toString();
         String contraseña2 = etContraseña2.getText().toString();
-
-        MainActivity.preferencias = getSharedPreferences("usuarios", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor=MainActivity.preferencias.edit();
 
         if ( contraseña1.equals(contraseña2) ) {
 
@@ -76,9 +74,10 @@ public class RecuperarPswd extends AppCompatActivity {
             }
 
             //Cambiar contraseña
-            editor.putString(usuario + "_contraseña", cifradoStr).commit();
+            String sql= "UPDATE usuarios set contra= '"+cifradoStr+"' where nombre='"+nombre+"'";
+            InsertDatos in1 = new InsertDatos(sql);
             Toast.makeText(this,"Contraseña cambiada correctamente",Toast.LENGTH_LONG).show();
-            finish();
+
 
         } else {
             Toast.makeText(this,"Las contraseñas no coinciden",Toast.LENGTH_LONG).show();
