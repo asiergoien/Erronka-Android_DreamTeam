@@ -56,7 +56,8 @@ public class Login extends AppCompatActivity {
         String contraseña=this.editTextContraseña.getText().toString();
 
         if (!usuario.isEmpty() || !contraseña.isEmpty()) { //comprueba si los campos estan vacios
-            if ( MainActivity.preferencias.contains(usuario+"_usuario")) { // comprueba si el usuario existe
+
+            if (MainActivity.preferencias.contains(usuario+"_usuario")) { // comprueba si el usuario existe
                 contraguardada =  MainActivity.preferencias.getString(usuario+"_contraseña", ""); // guardar en la variable la contraseña asociada al usuario
 
                 Log.i("tag", "   ----------------------------------------------------    contra guardada : " + contraguardada);

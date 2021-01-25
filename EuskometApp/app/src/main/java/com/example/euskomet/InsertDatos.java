@@ -1,4 +1,5 @@
 package com.example.euskomet;
+
 import android.util.Log;
 
 import java.sql.Connection;
@@ -6,12 +7,19 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ClienteThreadPrueba implements Runnable {
+public class InsertDatos implements Runnable {
     private String sResultado;
-    public ClienteThreadPrueba() {}
+    private static String sql;
+    private static  Integer tipo;
+
+    public InsertDatos(String sql, int tipo ) {
+        this.sql= sql;
+        this.tipo = tipo;
+    }
+
+    private boolean bol;
 
 
     @Override
@@ -22,7 +30,7 @@ public class ClienteThreadPrueba implements Runnable {
         String sIP;
         String sPuerto;
         String sBBDD;
-        try{
+        try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //Aqui pondriamos la IP y puerto.
             sIP = "192.168.106.12";  //Asier Klase
@@ -34,22 +42,13 @@ public class ClienteThreadPrueba implements Runnable {
             String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
 //            con = DriverManager.getConnection( url, "root", "");
             // con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
-            Log.i("mysql ", "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD+ "usuario"+"1234");
+            Log.i("mysql ", "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "usuario" + "1234");
             con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
 
-
-            String sql = "SELECT nombre FROM provincias where nombre = 'Bizkaia'";
             st = con.prepareStatement(sql);
-            rs = st.executeQuery();
+            bol=  st.execute();
 
-            //--
-            while (rs.next()) {
-                String var1 = rs.getString("nombre");
-                Log.i("XXXXXXX", var1);
-                sResultado = var1;
-            }
 
-            Log.i("tag", " ---------------------------------------- " + sResultado);
 
         } catch (ClassNotFoundException e) {
             Log.e("ClassNotFoundException", "");
@@ -64,15 +63,15 @@ public class ClienteThreadPrueba implements Runnable {
             // Intentamos cerrar _todo.
             try {
                 // Cerrar ResultSet
-                if(rs!=null) {
+                if (rs != null) {
                     rs.close();
                 }
                 // Cerrar PreparedStatement
-                if(st!=null) {
+                if (st != null) {
                     st.close();
                 }
                 // Cerrar Connection
-                if(con!=null) {
+                if (con != null) {
                     con.close();
                 }
             } catch (Exception e) {
@@ -82,7 +81,11 @@ public class ClienteThreadPrueba implements Runnable {
         }
     }
 
-    public String getResulset() {
-        return sResultado;
+    public boolean isBol() {
+        return bol;
+    }
+
+    public void setBol(boolean bol) {
+        this.bol = bol;
     }
 }

@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.euskomet.ClienteThread;
-import com.example.euskomet.ClienteThreadEspaciosNaturales;
-import com.example.euskomet.ClienteThreadTipo;
+import com.example.euskomet.Listado_Espacios_Naturales;
+import com.example.euskomet.Listado_datosMun;
 import com.example.euskomet.R;
 
 public class MenuPrincipal extends AppCompatActivity {
@@ -30,7 +29,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btnAtras = (Button)findViewById(R.id.btn_atras);
     }
     public void Municipios(View view){
-        Intent ListadoDatos = new Intent(this, ClienteThread.ListadoDatos_Municipios.class);
+        Intent ListadoDatos = new Intent(this, Listado_datosMun.class);
         startActivity(ListadoDatos);
 
     }
@@ -38,7 +37,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
     }
     public void Espacios_naturales(View view){
-        Intent ListadoDatos = new Intent(this, ClienteThreadTipo.ListadoDatos_Municipios.class);
+        Intent ListadoDatos = new Intent(this, Listado_Espacios_Naturales.class);
         startActivity(ListadoDatos);
     }
     public void Favoritos(View view){

@@ -5,7 +5,6 @@ public class EspacioNatural {
     private int cod_esp_natural;
     private String nombre;
     private String tipo;
-    private int cod_mun;
     private String desc;
 
     // Este constructor es solo para poder llenar la lista con datos.

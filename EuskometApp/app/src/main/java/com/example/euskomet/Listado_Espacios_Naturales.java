@@ -24,87 +24,87 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ClienteThreadTipo implements Runnable {
-    private String sResultado;
-    public ClienteThreadTipo() {}
+//public class ClienteThreadTipo implements Runnable {
+//    private String sResultado;
+//    public ClienteThreadTipo() {}
+//
+//    private ArrayList<String> tipoArrayList = new ArrayList<String>();
+//
+//    @Override
+//    public void run() {
+//        ResultSet rs = null;
+//        PreparedStatement st = null;
+//        Connection con = null;
+//        String sIP;
+//        String sPuerto;
+//        String sBBDD;
+//        try{
+//            Class.forName("com.mysql.jdbc.Driver").newInstance();
+//            //Aqui pondriamos la IP y puerto.
+//            sIP = "192.168.106.12";  //Asier Klase
+//            //sIP = "localhost";
+//            //sIP= "192.168.0.11"; // Asier casa
+//            //sIP = "192.168.0.13";  //Aitor Casa
+//            sPuerto = "3306";
+//            sBBDD = "euskomet"; //nombre de la base de datos
+//            String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
+////            con = DriverManager.getConnection( url, "root", "");
+//           // con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
+//            Log.i("mysql ", "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD+ "usuario"+"1234");
+//            con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
+//
+//
+//
+//
+//            // Consulta sencilla en este caso.
+//            String sql = "SELECT DISTINCT tipo FROM espacios_naturales";
+////            String sql = "SELECT * FROM usuarios";
+//            st = con.prepareStatement(sql);
+//            rs = st.executeQuery();
+//
+//            //--
+//            while (rs.next()) {
+//
+//                tipoArrayList.add(rs.getString("tipo"));
+//
+//            }
+//
+//        } catch (ClassNotFoundException e) {
+//            Log.e("ClassNotFoundException", "");
+//            e.printStackTrace();
+//        } catch (SQLException e) {
+//            Log.e("SQLException", "");
+//            e.printStackTrace();
+//        } catch (Exception e) {
+//            Log.e("Exception", "");
+//            e.printStackTrace();
+//        } finally {
+//            // Intentamos cerrar _todo.
+//            try {
+//                // Cerrar ResultSet
+//                if(rs!=null) {
+//                    rs.close();
+//                }
+//                // Cerrar PreparedStatement
+//                if(st!=null) {
+//                    st.close();
+//                }
+//                // Cerrar Connection
+//                if(con!=null) {
+//                    con.close();
+//                }
+//            } catch (Exception e) {
+//                Log.e("Exception_cerrando todo", "");
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
-    private ArrayList<String> tipoArrayList = new ArrayList<String>();
+//    public ArrayList<String> gettipoArrayList() {
+//        return tipoArrayList;
+//    }
 
-    @Override
-    public void run() {
-        ResultSet rs = null;
-        PreparedStatement st = null;
-        Connection con = null;
-        String sIP;
-        String sPuerto;
-        String sBBDD;
-        try{
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            //Aqui pondriamos la IP y puerto.
-            //sIP = "192.168.106.12";  //Asier Klase
-            //sIP = "localhost";
-            sIP= "192.168.0.11"; // Asier casa
-            //sIP = "192.168.0.13";  //Aitor Casa
-            sPuerto = "3306";
-            sBBDD = "euskomet"; //nombre de la base de datos
-            String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
-//            con = DriverManager.getConnection( url, "root", "");
-           // con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
-            Log.i("mysql ", "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD+ "usuario"+"1234");
-            con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
-
-
-
-
-            // Consulta sencilla en este caso.
-            String sql = "SELECT DISTINCT tipo FROM espacios_naturales";
-//            String sql = "SELECT * FROM usuarios";
-            st = con.prepareStatement(sql);
-            rs = st.executeQuery();
-
-            //--
-            while (rs.next()) {
-
-                tipoArrayList.add(rs.getString("tipo"));
-
-            }
-
-        } catch (ClassNotFoundException e) {
-            Log.e("ClassNotFoundException", "");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            Log.e("SQLException", "");
-            e.printStackTrace();
-        } catch (Exception e) {
-            Log.e("Exception", "");
-            e.printStackTrace();
-        } finally {
-            // Intentamos cerrar _todo.
-            try {
-                // Cerrar ResultSet
-                if(rs!=null) {
-                    rs.close();
-                }
-                // Cerrar PreparedStatement
-                if(st!=null) {
-                    st.close();
-                }
-                // Cerrar Connection
-                if(con!=null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                Log.e("Exception_cerrando todo", "");
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public ArrayList<String> gettipoArrayList() {
-        return tipoArrayList;
-    }
-
-    public static class ListadoDatos_Municipios extends AppCompatActivity implements AdapterView.OnItemSelectedListener , AdapterView.OnItemClickListener {
+    public  class Listado_Espacios_Naturales extends AppCompatActivity implements AdapterView.OnItemSelectedListener , AdapterView.OnItemClickListener {
 
         private ConnectivityManager connectivityManager = null;
 
@@ -133,9 +133,10 @@ public class ClienteThreadTipo implements Runnable {
             conectarOnClick();
 
 
+
             try {
                 ArrayList<EspacioNatural> arrayMunicipio = new ArrayList<EspacioNatural>();
-                arrayMunicipio = conectarMunicipios();
+                arrayMunicipio = conectarEsp();
                 for (int i = 0; i < arrayMunicipio.size(); i++) {
                     arrayDatosEspacioNatural.add(arrayMunicipio.get(i));
                 }
@@ -215,7 +216,7 @@ public class ClienteThreadTipo implements Runnable {
             try {
                 if (isConnected()) {
                     ArrayList<String> arrayProvincias = new ArrayList<String>();
-                    arrayProvincias = conectarTipos();
+                    arrayProvincias = conectarTipo();
 
     //                ArrayList<String> nombreProvincias = new ArrayList<String>();
     //                String nombreProvincias[] = new String[arrayProvincias.size()];
@@ -247,20 +248,38 @@ public class ClienteThreadTipo implements Runnable {
 
         }
 
-        private ArrayList<String> conectarTipos() throws InterruptedException {
-            ClienteThreadTipo clienteThread = new ClienteThreadTipo();
+        //----------------------------------------------------------- CONECTAR TIPO
+        private ArrayList<String> conectarTipo() throws InterruptedException {
+            ClienteThread clienteThread = new ClienteThread("SELECT DISTINCT tipo FROM espacios_naturales", 3);
             Thread thread = new Thread(clienteThread);
             thread.start();
             thread.join(); // Esperar respuesta del servidor...
-            return clienteThread.gettipoArrayList();
-        }
 
-        private ArrayList<EspacioNatural> conectarMunicipios() throws InterruptedException {
-            ClienteThreadEspaciosNaturales clienteThread = new ClienteThreadEspaciosNaturales();
+            ArrayList<String> ArrayMun= new ArrayList<String>();
+            ArrayList<Object> viejo = new ArrayList<Object>();
+
+            viejo= clienteThread.getCliemteThread_ArrayList();
+            for (Object ob : viejo){
+                ArrayMun.add((String) ob);
+            }
+            return ArrayMun;
+        }
+        //----------------------------------------------------------- CONECTAR ESPACIOS NATURALES
+        private ArrayList<EspacioNatural> conectarEsp() throws InterruptedException {
+
+            ClienteThread clienteThread = new ClienteThread("SELECT * FROM espacios_naturales", 4);
             Thread thread = new Thread(clienteThread);
             thread.start();
             thread.join(); // Esperar respuesta del servidor...
-            return clienteThread.getEspNatArrayList();
+
+            ArrayList<EspacioNatural> ArrayMun= new ArrayList<EspacioNatural>();
+            ArrayList<Object> viejo = new ArrayList<Object>();
+
+            viejo= clienteThread.getCliemteThread_ArrayList();
+            for (Object ob : viejo){
+                ArrayMun.add((EspacioNatural) ob);
+            }
+            return ArrayMun;
         }
 
         public boolean isConnected() {
@@ -292,4 +311,4 @@ public class ClienteThreadTipo implements Runnable {
             String text = parent.getItemAtPosition(position).toString();
         }
     }
-}
+
