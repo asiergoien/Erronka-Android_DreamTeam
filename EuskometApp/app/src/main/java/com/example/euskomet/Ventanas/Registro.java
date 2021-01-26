@@ -134,8 +134,7 @@ public class Registro extends AppCompatActivity {
     }
 
     public void volver(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+        finish();
     }
     private ArrayList<Usuario> conectarUsuario() throws InterruptedException {
         CargarDatos clienteThread = new CargarDatos("SELECT * FROM usuarios", 5);

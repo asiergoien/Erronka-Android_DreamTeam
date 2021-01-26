@@ -2,6 +2,7 @@ package com.example.euskomet.Ventanas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -136,16 +137,16 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("LongLogTag")
     public void cambioPantalla_MenuPrincipal(Usuario us) {
         Intent intent = new Intent(this, MenuPrincipal.class);
-        Log.i("CodUsuario", us.getCod_user()+"");
-        intent.putExtra("cod_usuario", us.getCod_user());
+        int cod = us.getCod_user();
+        intent.putExtra("cod_usuario", cod);
         startActivity(intent);
     }
 
     public void volver(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     public byte[] cifrar (String texto) {

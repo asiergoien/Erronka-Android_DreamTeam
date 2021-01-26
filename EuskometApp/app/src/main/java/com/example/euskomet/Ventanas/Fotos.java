@@ -23,7 +23,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.euskomet.CargarDatos;
 import com.example.euskomet.Conexion;
+import com.example.euskomet.EspacioNatural;
+import com.example.euskomet.InsertDatos;
 import com.example.euskomet.R;
 
 import java.io.File;
@@ -52,6 +55,8 @@ public class Fotos extends AppCompatActivity {
     private ImageView imagen;
     public File foto;
     public Bitmap imgBitmap;
+    private String fot_tabla;
+    private int cod;
 
 
     @Override
@@ -62,6 +67,28 @@ public class Fotos extends AppCompatActivity {
         btnCamara = (ImageButton)findViewById(R.id.btnCamara);
         imagen = (ImageView)findViewById(R.id.imagen);
 
+        cod =  getIntent().getIntExtra("cod",-1);
+        fot_tabla =  getIntent().getStringExtra("foto");
+
+        try {
+            CargarDatos clienteThread = new CargarDatos("SELECT * FROM "+fot_tabla+" WHERE "+(fot_tabla.equals("fotos_municipios") ? "cod_mun" : (fot_tabla.equals("fotos_esp_naturales") ? "cod_esp_natural" : null))+" = " + cod, 7);
+            Thread thread = new Thread(clienteThread);
+            thread.start();
+            thread.join();
+
+            ArrayList<Bitmap> arrayBitmap= new ArrayList<Bitmap>();
+            ArrayList<Object> viejo = new ArrayList<Object>();
+
+            viejo= clienteThread.getCliemteThread_ArrayList();
+            for (Object ob : viejo){
+                arrayBitmap.add((Bitmap) ob);
+            }
+            Log.i("FOTOS", "bitmap: " + arrayBitmap.size());
+            if (arrayBitmap.size() != 0)
+                imagen.setImageBitmap(arrayBitmap.get(0));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -164,9 +191,10 @@ public class Fotos extends AppCompatActivity {
         try {
             FileInputStream f = new FileInputStream(foto);
             f.read(leido);
-            int cod =  getIntent().getIntExtra("Cod_mun",-1);
             if (cod > 0){
-                Conexion con = new Conexion(cod, tam, leido);
+                //Conexion con = new Conexion("INSERT INTO "+fot_tabla+" ("+(fot_tabla.equals("fotos_municipios") ? "cod_mun" : (fot_tabla.equals("fotos_esp_naturales") ? "cod_esp_natural" : null))+",tam,archivo) VALUES("+cod+","+ tam +",'" + leido + "')");
+
+                Conexion con = new Conexion(cod,tam,f,fot_tabla,(fot_tabla.equals("fotos_municipios") ? "cod_mun" : (fot_tabla.equals("fotos_esp_naturales") ? "cod_esp_natural" : null)));
                 Thread t = new Thread(con);
                 t.start();
                 t.join();
@@ -181,7 +209,7 @@ public class Fotos extends AppCompatActivity {
     }
 
     public void volver(View view) {
-        String  nombre = getIntent().getStringExtra("nombre");
+        /*String  nombre = getIntent().getStringExtra("nombre");
         int cod_mun =  getIntent().getIntExtra("Cod_mun",-1);
         int cod_prov =  getIntent().getIntExtra("Cod_prov",-1);
         String desc = getIntent().getStringExtra("desc");
@@ -190,7 +218,9 @@ public class Fotos extends AppCompatActivity {
         intent.putExtra("desc",desc);
         intent.putExtra("nombre",nombre);
         intent.putExtra("Cod_prov",cod_prov);
-        startActivity(intent);
+        startActivity(intent);*/
+
+        finish();
 
     }
 

@@ -6,13 +6,34 @@ public class EspacioNatural {
     private String nombre;
     private String tipo;
     private String desc;
+    private double longitud;
+    private double latitud;
+
 
     // Este constructor es solo para poder llenar la lista con datos.
-    public EspacioNatural(int cod_esp_natural, String nombre, String tipo, String desc) {
+    public EspacioNatural(int cod_esp_natural, String nombre, String tipo, String desc,double latitud,double longitud) {
         this.cod_esp_natural = cod_esp_natural;
         this.nombre = nombre;
         this.tipo = tipo;
         this.desc = desc;
+        this.longitud= longitud;
+        this.latitud= latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
     }
 
     public int getCod_esp_natural() {

@@ -2,8 +2,10 @@ package com.example.euskomet.Ventanas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -30,23 +32,30 @@ public class MenuPrincipal extends AppCompatActivity {
     }
     public void Municipios(View view){
         Intent ListadoDatos = new Intent(this, Listado_datosMun.class);
-        ListadoDatos.putExtra("cod_usuario", getIntent().getStringExtra("cod_usuario"));
+        int codusu = getIntent().getIntExtra("cod_usuario", -1);
+        Log.i("codusu", "MenuPrincMun: " + codusu);
+        ListadoDatos.putExtra("cod_usuario", codusu);
         startActivity(ListadoDatos);
 
     }
     public void Top_ranking(View view){
 
     }
+    @SuppressLint("LongLogTag")
     public void Espacios_naturales(View view){
         Intent ListadoDatos = new Intent(this, Listado_Espacios_Naturales.class);
-        ListadoDatos.putExtra("cod_usuario", getIntent().getStringExtra("cod_usuario"));
+        //aqui xq pasamos codusu?
+        int codusu = getIntent().getIntExtra("cod_usuario", -1);
+        Log.i("[Espacios_naturales - MENUPRINCIPAL]--Cod_usuario", "--------------------[CODIGO_USUARIO]-----"+codusu);
+        ListadoDatos.putExtra("cod_usuario", codusu);
+        ListadoDatos.putExtra("Municipio", codusu);
         startActivity(ListadoDatos);
     }
     public void Favoritos(View view){
 
     }
+
     public void volver(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 }

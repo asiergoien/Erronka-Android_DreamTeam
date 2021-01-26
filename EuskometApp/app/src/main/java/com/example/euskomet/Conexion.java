@@ -2,6 +2,7 @@ package com.example.euskomet;
 
 import android.util.Log;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,12 +15,16 @@ public class Conexion implements Runnable {
 
     int cod;
     int tam;
-    byte[] leido;
+    String tabla;
+    FileInputStream leido;
+    String codigo;
 
-    public Conexion(int cod, int tam, byte[] leido) {
+    public Conexion(int cod, int tam, FileInputStream leido,String tabla,String codigo) {
         this.cod = cod;
         this.tam = tam;
         this.leido = leido;
+        this.tabla= tabla;
+        this.codigo= codigo;
     }
 
     @Override
@@ -30,7 +35,6 @@ public class Conexion implements Runnable {
         String sBBDD;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            //Aqui pondriamos la IP y puerto.
             //sIP = "192.168.106.12";  //Asier Klase
             //sIP = "localhost";
             sIP= "192.168.0.11"; // Asier casa
@@ -40,13 +44,14 @@ public class Conexion implements Runnable {
             //String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
 //            con = DriverManager.getConnection( url, "root", "");
             // con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
-            Log.i("mysql ", "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "usuario" + "1234");
             con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
 
-            String sql = "INSERT INTO fotos_municipios (cod_mun,tam,archivo) VALUES("+cod+","+ tam +",'" + leido + "')";
+            String sql = "INSERT INTO "+tabla+" ("+codigo+",tam,archivo) VALUES("+cod+","+ tam +",?)";
+
             Log.i("conexion", con.toString());
             PreparedStatement st = con.prepareStatement(sql);
-            st.execute();
+            st.setBlob(1,leido,tam);
+            st.executeUpdate();
             con.setAutoCommit(false);
             con.commit();
             con.close();

@@ -48,11 +48,11 @@
         android:text="Ejemplo de texto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintStart_toEndOf="@+id/label_Tipo_Prov"
         app:layout_constraintTop_toBottomOf="@+id/textview_Nombre" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/label_Tipo_Prov"
         android:layout_width="66dp"
         android:layout_height="23dp"
         android:layout_marginStart="28dp"
@@ -71,7 +71,7 @@
         android:text="@string/dato3"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/Multiline_Desc"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/label_Tipo_Prov" />
 
     <TextView
         android:id="@+id/textview_Nombre"
@@ -127,7 +127,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Multiline_Desc" />
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/btnAtras"
         android:layout_width="112dp"
         android:layout_height="43dp"
         android:layout_marginStart="48dp"
@@ -159,6 +159,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="100dp"
+        android:onClick="Localizacion"
         android:text="@string/mapa"
         app:icon="@drawable/location_pequemo"
         app:layout_constraintEnd_toEndOf="parent"

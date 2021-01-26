@@ -1,4 +1,5 @@
 package com.example.euskomet;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -218,13 +219,31 @@ import java.util.ArrayList;
             return ret;
         }
 
+        @SuppressLint("LongLogTag")
         public void Mostrar_informacion(EspacioNatural item) {
             Intent Mostrar_informacion = new Intent(this, Mostrar_Informacion.class);
-            Mostrar_informacion.putExtra("Cod_esp", item.getCod_esp_natural());
+            Mostrar_informacion.putExtra("cod", item.getCod_esp_natural());
             Mostrar_informacion.putExtra("desc",item.getDesc());
             Mostrar_informacion.putExtra("nombre",item.getNombre());
             Mostrar_informacion.putExtra("tipo",item.getTipo());
-            Mostrar_informacion.putExtra("cod_usuario", getIntent().getStringExtra("cod_usuario"));
+
+            //Fallo al pasar el cod_user
+
+            //Para los mapas
+            Mostrar_informacion.putExtra("lo",item.getLongitud());
+            Mostrar_informacion.putExtra("la",item.getLatitud());
+
+
+            int codusu = getIntent().getIntExtra("cod_usuario", -1);
+
+            Log.i("MOSTRARINFORMACION ESPACIO NATURAL", "---------------------------------------MOSTRARINFORMACION ESPACIO NATURAL---------------------------------------------[ ");
+            Log.i("[INTENT MOSTRARINFORMACION ESPACIO NATURAL]--Cod_usuario", "--------------------[CODIGO_USUARIO]-----["+codusu);
+            Log.i("[INTENT MOSTRARINFORMACION ESPACIO NATURAL]--cod_esp_natural", "--------------------[CODIGO_ESP_NATURAL]-----["+item.getCod_esp_natural());
+            Log.i("[INTENT MOSTRARINFORMACION ESPACIO NATURAL]--nombre_espacio_natural", "--------------------[NOMBRE_ESPACIO_NATURAL]-----["+item.getNombre());
+            Log.i("[INTENT MOSTRARINFORMACION ESPACIO NATURAL]--tipo", "--------------------[TIPO_DE_ESPACIO_NATURAL]-----["+item.getTipo());
+
+
+            Mostrar_informacion.putExtra("cod_usuario", codusu);
             Mostrar_informacion.putExtra("fav", "favoritos_esp");
 
             startActivity(Mostrar_informacion);

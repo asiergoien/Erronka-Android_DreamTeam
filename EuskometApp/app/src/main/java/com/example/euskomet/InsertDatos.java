@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 public class InsertDatos implements Runnable {
     private String sResultado;
     private static String sql;
@@ -31,17 +33,16 @@ public class InsertDatos implements Runnable {
         String sBBDD;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            //Aqui pondriamos la IP y puerto.
             //sIP = "192.168.106.12";  //Asier Klase
             //sIP = "localhost";
             sIP= "192.168.0.11"; // Asier casa
             //sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
-            Log.i("mysql ", "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "usuario" + "1234");
             con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
 
             st = con.prepareStatement(sql);
+            Log.i("SENTENCIA INSERT", "[SENTECIA INSERT] --------------------------------->"+sql);
             st.execute();
 
             bol = true;

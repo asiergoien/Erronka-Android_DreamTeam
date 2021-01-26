@@ -1,4 +1,5 @@
 package com.example.euskomet;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -209,15 +210,23 @@ import java.util.ArrayList;
             return ret;
         }
 
+        @SuppressLint("LongLogTag")
         public void Mostrar_informacion(Municipio item) {
             Intent Mostrar_informacion = new Intent(this, Mostrar_Informacion.class);
-            Mostrar_informacion.putExtra("Cod_mun", item.getCod_mun());
+            Mostrar_informacion.putExtra("cod", item.getCod_mun());
             Mostrar_informacion.putExtra("desc",item.getDesc());
             Mostrar_informacion.putExtra("nombre",item.getNombre());
             Mostrar_informacion.putExtra("Cod_prov",item.getCod_prov());
-            Mostrar_informacion.putExtra("cod_usuario", getIntent().getStringExtra("cod_usuario"));
-            Mostrar_informacion.putExtra("fav", "favoritos_mun");
 
+            int codusu = getIntent().getIntExtra("cod_usuario", -1);
+
+            Log.i("MOSTRARINFORMACION_MUN", "---------------------------------------MOSTRARINFORMACION_MUN--------------------------------------------- ");
+            Log.i("[INTENT MOSTRARINFORMACION MUNICIPIO]--Cod_usuario", "--------------------[CODIGO_USUARIO]-----"+codusu);
+            Log.i("[INTENT MOSTRARINFORMACION MUNICIPIO]--cod_mun", "--------------------[CODIGO_MUN]-----"+item.getCod_mun());
+            Log.i("[INTENT MOSTRARINFORMACION MUNICIPIO]--nombre_municipio", "--------------------[NOMBRE_MUN]-----"+item.getNombre());
+            Log.i("[INTENT MOSTRARINFORMACION MUNICIPIO]--cod_prov", "--------------------[CODIGO_PROV]-----"+item.getCod_prov());
+            Mostrar_informacion.putExtra("cod_usuario", codusu);
+            Mostrar_informacion.putExtra("fav", "favoritos_mun");
             startActivity(Mostrar_informacion);
         }
     }
