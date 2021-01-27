@@ -1,23 +1,24 @@
 package com.example.euskomet;
 
-import java.util.Date;
-
 public class Municipio {
 
-    private String cod_mun;
+    private int cod_mun;
     private String nombre;
+    private int cod_prov;
+    private String desc;
 
-    // Este constructor es solo para poder llenar la lista con datos.
-    public Municipio(String cod_mun, String nombre) {
+    public Municipio(int cod_mun, String nombre, int cod_prov,String desc ) {
         this.cod_mun = cod_mun;
         this.nombre = nombre;
+        this.cod_prov = cod_prov;
+        this.desc   = desc;
     }
 
-    public String getCod_mun() {
+    public int getCod_mun() {
         return cod_mun;
     }
 
-    public void setCod_mun(String cod_mun) {
+    public void setCod_mun(int cod_mun) {
         this.cod_mun = cod_mun;
     }
 
@@ -29,4 +30,19 @@ public class Municipio {
         this.nombre = nombre;
     }
 
+    public int getCod_prov() {
+        return cod_prov;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setCod_prov(int cod_prov) {
+        this.cod_prov = cod_prov;
+    }
 }

@@ -32,10 +32,12 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     // Necesitamos implementar esta libreria para poder realizar la conexión con la BBDD.
     implementation files('.\\mysql-connector-java-5.1.23.jar')
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ventanas.Fotos">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="119dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="115dp"
+        android:fontFamily="@font/abeezee"
+        android:text="@string/titulo"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAtras"
+        android:layout_width="112dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="61dp"
+        android:onClick="volver"
+        android:text="@string/atras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="395dp"
+        android:layout_height="312dp"
+        android:layout_below="@+id/button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCamara"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/btnCamara"
+        android:layout_width="64dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="32dp"
+        android:cropToPadding="false"
+        android:onClick="TomarFoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/thefullreflexcamera_slr_camera_4626" />
+
+    <ImageButton
+        android:id="@+id/imgBtnIzquierda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="403dp"
+        android:onClick="anteriorFoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_right" />
+
+    <ImageButton
+        android:id="@+id/imgBtnDerecha"
+        android:layout_width="72dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="403dp"
+        android:layout_marginEnd="36dp"
+        android:onClick="siguienteFoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_left" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="202dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="160dp"
+        android:onClick="guardarFoto"
+        android:text="@string/guardar_foto"
+        app:icon="@drawable/saveimg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

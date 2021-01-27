@@ -1,4 +1,4 @@
-package com.example.euskomet;
+package com.example.euskomet.Ventanas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,14 +8,14 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.euskomet.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,44 +42,49 @@ public class MainActivity extends AppCompatActivity {
 
     public void cambioPantallaLogin(View view) {
 
-        Intent intent = new Intent(this,Login.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 
     public void cambioPantallaRegistro(View view) {
 
-        Intent intent = new Intent(this,Registro.class);
+        Intent intent = new Intent(this, Registro.class);
         startActivity(intent);
     }
 
     //  -------------------------------------------------------------------------------------------- CONEXIÓN BASE DE DATOS
-    public void conectarOnClick(View v) {
 
-        try {
-            if (isConnected()) {
-                String sRespuesta = conectar();
-                if (null == sRespuesta) { // Si la respuesta es null, una excepción ha ocurrido.
-                    Toast.makeText(getApplicationContext(), "ERROR_COMUNICACION", Toast.LENGTH_SHORT).show();
+    /*
+        public void conectarOnClick(View v) {
+
+            try {
+                if (isConnected()) {
+                    String sRespuesta =  conectarUsuarios();
+                    if (null == sRespuesta) { // Si la respuesta es null, una excepción ha ocurrido.
+                        Toast.makeText(getApplicationContext(), "ERROR_COMUNICACION", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), sRespuesta, Toast.LENGTH_SHORT).show(); // Mostramos en el textView el nombre.
+                        TextView.setText(sRespuesta);
+                    }
                 } else {
-                    Toast.makeText(getApplicationContext(), sRespuesta, Toast.LENGTH_SHORT).show(); // Mostramos en el textView el nombre.
-                    TextView.setText(sRespuesta);
+                    Toast.makeText(getApplicationContext(), "ERROR_NO_INTERNET", Toast.LENGTH_SHORT).show();
                 }
-            } else {
-                Toast.makeText(getApplicationContext(), "ERROR_NO_INTERNET", Toast.LENGTH_SHORT).show();
+            } catch (InterruptedException e) {
+                // This cannot happen!
+                Toast.makeText(getApplicationContext(), "ERROR_GENERAL", Toast.LENGTH_SHORT).show();
             }
-        } catch (InterruptedException e) {
-            // This cannot happen!
-            Toast.makeText(getApplicationContext(), "ERROR_GENERAL", Toast.LENGTH_SHORT).show();
+
         }
 
-    }
-    private String conectar() throws InterruptedException {
-        ClienteThread clienteThread = new ClienteThread();
-        Thread thread = new Thread(clienteThread);
-        thread.start();
-        thread.join(); // Esperar respuesta del servidor...
-        return clienteThread.getResponse();
-    }
+        private String conectarUsuarios() throws InterruptedException {
+            ClienteThreadPrueba clienteThread = new ClienteThreadPrueba();
+            Thread thread = new Thread(clienteThread);
+            thread.start();
+            thread.join(); // Esperar respuesta del servidor...
+            return clienteThread.getResulset();
+        }
+
+         */
     public boolean isConnected() {
         boolean ret = false;
         try {
@@ -93,5 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return ret;
     }
+
+
 }
 

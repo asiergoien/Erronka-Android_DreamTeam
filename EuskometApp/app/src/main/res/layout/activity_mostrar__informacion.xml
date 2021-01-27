@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <androidx.constraintlayout.widget.ConstraintLayout tools:context=".Ventanas.Mostrar_Informacion"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="119dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="145dp"
+        android:fontFamily="@font/abeezee"
+        android:text="@string/titulo"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Multiline_Desc"
+        android:layout_width="267dp"
+        android:layout_height="132dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:text="Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto "
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_Provincia" />
+
+    <TextView
+        android:id="@+id/textview_Provincia"
+        android:layout_width="230dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="67dp"
+        android:text="Ejemplo de texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/label_Tipo_Prov"
+        app:layout_constraintTop_toBottomOf="@+id/textview_Nombre" />
+
+    <TextView
+        android:id="@+id/label_Tipo_Prov"
+        android:layout_width="66dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/dato2"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="79dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:text="@string/dato3"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/Multiline_Desc"
+        app:layout_constraintTop_toBottomOf="@+id/label_Tipo_Prov" />
+
+    <TextView
+        android:id="@+id/textview_Nombre"
+        android:layout_width="230dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="67dp"
+        android:text="Ejemplo de texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="58dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="72dp"
+        android:text="@string/dato1"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnCom"
+        android:layout_width="234dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="100dp"
+        android:text="@string/compartir"
+        app:icon="@drawable/sharing_share_icon_124236"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnfav" />
+
+    <Button
+        android:id="@+id/btnFotos"
+        android:layout_width="234dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="100dp"
+        android:onClick="Fotos"
+        android:text="@string/fotos"
+        app:icon="@drawable/mbriimagegallery_99572"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Multiline_Desc" />
+
+    <Button
+        android:id="@+id/btnAtras"
+        android:layout_width="112dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="40dp"
+        android:onClick="volver"
+        android:text="@string/atras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnfav"
+        android:layout_width="234dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="100dp"
+        android:onClick="Favoritos"
+        android:text="@string/añadir_favoritos"
+        app:icon="@drawable/favoritos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHis" />
+
+    <Button
+        android:id="@+id/btnLoc"
+        android:layout_width="234dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="100dp"
+        android:onClick="Localizacion"
+        android:text="@string/mapa"
+        app:icon="@drawable/location_pequemo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFotos" />
+
+    <Button
+        android:id="@+id/btnHis"
+        android:layout_width="234dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="100dp"
+        android:text="@string/historico"
+        app:icon="@drawable/histori"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLoc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

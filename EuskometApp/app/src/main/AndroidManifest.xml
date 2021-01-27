@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.euskomet">
+
     <!-- Permiso para poder el estado de la red en el teléfono -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Permiso para poder acceder a internet -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,18 +15,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Euskomet">
-        <activity android:name=".ListadoDatos"></activity>
-        <activity android:name=".MenuPrincipal" />
-        <activity android:name=".RecuperarPswd" />
-        <activity android:name=".Registro" />
-        <activity android:name=".Login" />
-        <activity android:name=".MainActivity">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/file_paths" />
+
+        <activity android:name=".Ventanas.Mapa" />
+        <activity android:name=".Ventanas.Fotos" />
+        <activity android:name=".Ventanas.Mostrar_Informacion" />
+        <activity android:name=".Listado_datosMun" />
+        <activity android:name=".Listado_Espacios_Naturales" />
+        <activity android:name=".Ventanas.MenuPrincipal" />
+        <activity android:name=".Ventanas.RecuperarPswd" />
+        <activity android:name=".Ventanas.Registro" />
+        <activity android:name=".Ventanas.Login" />
+        <activity android:name=".Ventanas.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <uses-library android:name="org.apache.http.legacy"
+            android:required="false"/>
     </application>
 
 </manifest>

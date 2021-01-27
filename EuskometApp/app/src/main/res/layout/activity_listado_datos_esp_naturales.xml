@@ -5,15 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondoPantalla"
-    tools:context=".ListadoDatos">
+    tools:context=".ClienteThreadTipo$ListadoDatos_Municipios">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="353dp"
-        android:layout_height="547dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="30dp"
+        android:id="@+id/recycler_view_esp_nat"
+        android:layout_width="208dp"
+        android:layout_height="429dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_esp_nat" />
+
+    <Spinner
+        android:id="@+id/spinner_esp_nat"
+        android:layout_width="231dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

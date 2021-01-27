@@ -1,47 +1,51 @@
 package com.example.euskomet;
+
 import android.util.Log;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 
-public class ClienteThread implements Runnable {
+import static android.content.ContentValues.TAG;
+
+public class InsertDatos implements Runnable {
     private String sResultado;
-    public ClienteThread() {}
+    private static String sql;
+
+    public InsertDatos(String sql) {
+        this.sql= sql;
+
+    }
+    private boolean bol;
+
+
     @Override
     public void run() {
+        bol = false;
         ResultSet rs = null;
         PreparedStatement st = null;
         Connection con = null;
         String sIP;
         String sPuerto;
         String sBBDD;
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            //Aqui pondriamos la IP y puerto.
-            sIP = "192.168.106.26";
-//            sIP = "127.0.0.1";
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            sIP = "192.168.106.12";  //Asier Klase
+            //sIP = "localhost";
+            //sIP = "192.168.0.11"; // Asier casa
+            //sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
-            String url = "jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD + "?serverTimezone=UTC";
-            con = DriverManager.getConnection( url, "usuario", "1234");
+            con = DriverManager.getConnection("jdbc:mysql://" + sIP + ":" + sPuerto + "/" + sBBDD, "usuario", "1234");
 
-
-            // Consulta sencilla en este caso.
-            String sql = "SELECT contraseña FROM usuarios WHERE nombre='Markel'";
             st = con.prepareStatement(sql);
-            rs = st.executeQuery();
+            Log.i("SENTENCIA INSERT", "[SENTECIA INSERT] --------------------------------->"+sql);
+            st.execute();
 
-            //--
-            while (rs.next()) {
-                String var1 = rs.getString("contraseña");
-                Log.i("XXXXXXX", var1);
-                sResultado = var1;
-            }
-
-            Log.i("tag", " ---------------------------------------- " + sResultado);
+            bol = true;
 
         } catch (ClassNotFoundException e) {
             Log.e("ClassNotFoundException", "");
@@ -56,15 +60,15 @@ public class ClienteThread implements Runnable {
             // Intentamos cerrar _todo.
             try {
                 // Cerrar ResultSet
-                if(rs!=null) {
+                if (rs != null) {
                     rs.close();
                 }
                 // Cerrar PreparedStatement
-                if(st!=null) {
+                if (st != null) {
                     st.close();
                 }
                 // Cerrar Connection
-                if(con!=null) {
+                if (con != null) {
                     con.close();
                 }
             } catch (Exception e) {
@@ -73,7 +77,12 @@ public class ClienteThread implements Runnable {
             }
         }
     }
-    public String getResponse() {
-        return sResultado;
+
+    public boolean isBol() {
+        return bol;
+    }
+
+    public void setBol(boolean bol) {
+        this.bol = bol;
     }
 }

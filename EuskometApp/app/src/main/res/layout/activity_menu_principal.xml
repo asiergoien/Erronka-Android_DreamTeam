@@ -5,69 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondoPantalla"
-    tools:context=".MenuPrincipal">
+    tools:context=".Ventanas.MenuPrincipal">
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btn_municipios"
         android:layout_width="279dp"
         android:layout_height="48dp"
         android:layout_marginStart="150dp"
         android:layout_marginEnd="150dp"
+        android:onClick="Municipios"
         android:text="@string/municipios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/btn_esp"
         android:layout_width="279dp"
         android:layout_height="48dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="150dp"
+        android:onClick="Espacios_naturales"
         android:text="@string/espaciosNaturales"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_municipios" />
 
     <Button
-        android:id="@+id/button14"
+        android:id="@+id/btn_Top"
         android:layout_width="279dp"
         android:layout_height="48dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="150dp"
+        android:onClick="Top_ranking"
         android:text="@string/ranking"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button13" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_esp" />
 
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/btn_fav"
         android:layout_width="279dp"
         android:layout_height="48dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="150dp"
+        android:onClick="Favoritos"
         android:text="@string/favoritos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button14" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_Top" />
 
     <Button
-        android:id="@+id/button16"
+        android:id="@+id/btn_atras"
         android:layout_width="187dp"
         android:layout_height="44dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="150dp"
+        android:onClick="volver"
         android:text="@string/atras"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button15" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_fav" />
 
     <ImageView
         android:id="@+id/imageView"

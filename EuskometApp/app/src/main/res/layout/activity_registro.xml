@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondoPantalla"
-    tools:context=".Registro">
+    tools:context=".Ventanas.Registro">
 
     <TextView
         android:id="@+id/textView7"
@@ -147,6 +147,7 @@
         android:layout_marginStart="150dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:onClick="volver"
         android:text="@string/atras"
         android:textColor="@color/textosBoton"
         app:backgroundTint="@color/botones"
