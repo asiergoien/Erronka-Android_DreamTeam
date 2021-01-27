@@ -53,11 +53,14 @@ public class Fotos extends AppCompatActivity {
 
     private ImageButton btnCamara;
     private ImageView imagen;
+    private ImageButton btnSiguiente;
+    private ImageButton btnAnterior;
     public File foto;
     public Bitmap imgBitmap;
     private String fot_tabla;
     private int cod;
-
+    private ArrayList<Bitmap> arrayBitmap;
+    private int indImagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,9 @@ public class Fotos extends AppCompatActivity {
 
         btnCamara = (ImageButton)findViewById(R.id.btnCamara);
         imagen = (ImageView)findViewById(R.id.imagen);
+        btnSiguiente = (ImageButton)findViewById(R.id.imgBtnDerecha);
+        btnAnterior = (ImageButton) findViewById(R.id.imgBtnIzquierda);
+
 
         cod =  getIntent().getIntExtra("cod",-1);
         fot_tabla =  getIntent().getStringExtra("foto");
@@ -76,22 +82,43 @@ public class Fotos extends AppCompatActivity {
             thread.start();
             thread.join();
 
-            ArrayList<Bitmap> arrayBitmap= new ArrayList<Bitmap>();
+            arrayBitmap= new ArrayList<Bitmap>();
             ArrayList<Object> viejo = new ArrayList<Object>();
+            indImagen = 0;
 
             viejo= clienteThread.getCliemteThread_ArrayList();
             for (Object ob : viejo){
                 arrayBitmap.add((Bitmap) ob);
             }
             Log.i("FOTOS", "bitmap: " + arrayBitmap.size());
-            if (arrayBitmap.size() != 0)
-                imagen.setImageBitmap(arrayBitmap.get(0));
+            if (arrayBitmap.size() != 0) {
+                imagen.setImageBitmap(arrayBitmap.get(indImagen));
+                btnAnterior.setEnabled(indImagen > 0);
+                btnSiguiente.setEnabled(indImagen < arrayBitmap.size() - 1);
+            }
+            else {
+                btnAnterior.setEnabled(false);
+                btnSiguiente.setEnabled(false);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
     }
 
+    public void siguienteFoto(View view) {
+        indImagen++;
+        btnAnterior.setEnabled(indImagen > 0);
+        btnSiguiente.setEnabled(indImagen < arrayBitmap.size() - 1);
+        imagen.setImageBitmap(arrayBitmap.get(indImagen));
+    }
+
+    public void anteriorFoto(View view) {
+        indImagen--;
+        btnAnterior.setEnabled(indImagen > 0);
+        btnSiguiente.setEnabled(indImagen < arrayBitmap.size() - 1);
+        imagen.setImageBitmap(arrayBitmap.get(indImagen));
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
 
@@ -110,7 +137,11 @@ public class Fotos extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK && data!=null) {
 
                 imgBitmap= (Bitmap) data.getExtras().get("data");
-                imagen.setImageBitmap(imgBitmap);
+                arrayBitmap.add(imgBitmap);
+                indImagen = arrayBitmap.size() - 1;
+                imagen.setImageBitmap(arrayBitmap.get(indImagen));
+                btnAnterior.setEnabled(indImagen > 0);
+                btnSiguiente.setEnabled(indImagen < arrayBitmap.size() - 1);
                 File outputDir = this.getCacheDir();
                 try {
                     foto = File.createTempFile(new Date().toInstant().toString(), "jpeg", outputDir);
@@ -164,7 +195,7 @@ public class Fotos extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        boolean guardado = imgBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+        boolean guardado = arrayBitmap.get(indImagen).compress(Bitmap.CompressFormat.JPEG, 100, fos);
         if (guardado) {
             Toast.makeText(this, "Exito al guardar la imagen", Toast.LENGTH_SHORT).show();
         }
@@ -194,7 +225,7 @@ public class Fotos extends AppCompatActivity {
             if (cod > 0){
                 //Conexion con = new Conexion("INSERT INTO "+fot_tabla+" ("+(fot_tabla.equals("fotos_municipios") ? "cod_mun" : (fot_tabla.equals("fotos_esp_naturales") ? "cod_esp_natural" : null))+",tam,archivo) VALUES("+cod+","+ tam +",'" + leido + "')");
 
-                Conexion con = new Conexion(cod,tam,f,fot_tabla,(fot_tabla.equals("fotos_municipios") ? "cod_mun" : (fot_tabla.equals("fotos_esp_naturales") ? "cod_esp_natural" : null)));
+                Conexion con = new Conexion(cod,tam,leido,fot_tabla,(fot_tabla.equals("fotos_municipios") ? "cod_mun" : (fot_tabla.equals("fotos_esp_naturales") ? "cod_esp_natural" : null)));
                 Thread t = new Thread(con);
                 t.start();
                 t.join();

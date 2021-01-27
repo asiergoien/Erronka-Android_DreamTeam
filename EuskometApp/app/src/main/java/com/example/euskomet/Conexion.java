@@ -16,13 +16,13 @@ public class Conexion implements Runnable {
     int cod;
     int tam;
     String tabla;
-    FileInputStream leido;
+    byte[] leido;
     String codigo;
 
-    public Conexion(int cod, int tam, FileInputStream leido,String tabla,String codigo) {
+    public Conexion(int cod, int tam,byte[] leido, String tabla,String codigo) {
         this.cod = cod;
         this.tam = tam;
-        this.leido = leido;
+        this.leido= leido;
         this.tabla= tabla;
         this.codigo= codigo;
     }
@@ -35,9 +35,9 @@ public class Conexion implements Runnable {
         String sBBDD;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            //sIP = "192.168.106.12";  //Asier Klase
+            sIP = "192.168.106.12";  //Asier Klase
             //sIP = "localhost";
-            sIP= "192.168.0.11"; // Asier casa
+            //sIP = "192.168.0.11"; // Asier casa
             //sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
@@ -50,8 +50,9 @@ public class Conexion implements Runnable {
 
             Log.i("conexion", con.toString());
             PreparedStatement st = con.prepareStatement(sql);
-            st.setBlob(1,leido,tam);
-            st.executeUpdate();
+
+            st.setBytes(1,leido);
+            st.execute();
             con.setAutoCommit(false);
             con.commit();
             con.close();
