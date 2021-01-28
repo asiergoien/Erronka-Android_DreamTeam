@@ -42,6 +42,9 @@ public class Mostrar_Informacion extends AppCompatActivity {
     public static String desc;
     private String fav;
 
+   private static Double Longitud;
+   private static Double Latitud;
+
 
     private static ArrayList<Municipio> arrayDatosMunicipio = new ArrayList<Municipio>();
     private boolean favorito;
@@ -96,6 +99,9 @@ public class Mostrar_Informacion extends AppCompatActivity {
         textView_Prov= (TextView)findViewById(R.id.textview_Provincia);
         multilinea = (EditText)findViewById(R.id.Multiline_Desc);
 
+        Longitud= getIntent().getDoubleExtra("lo",0);
+        Latitud= getIntent().getDoubleExtra("la",0);
+
     }
 
     @SuppressLint("ResourceAsColor")
@@ -140,6 +146,9 @@ public class Mostrar_Informacion extends AppCompatActivity {
         textView_Nom= (TextView)findViewById(R.id.textview_Nombre);
         textView_Prov= (TextView)findViewById(R.id.textview_Provincia);
         multilinea = (EditText)findViewById(R.id.Multiline_Desc);
+
+        Longitud= getIntent().getDoubleExtra("lo",0);
+        Latitud= getIntent().getDoubleExtra("la",0);
     }
 
     private void esFavorito() throws InterruptedException {
@@ -167,8 +176,8 @@ public class Mostrar_Informacion extends AppCompatActivity {
     }
 
     public void Localizacion(View view){
-         Double Longitud= getIntent().getDoubleExtra("lo",0);
-         Double Latitud= getIntent().getDoubleExtra("la",0);
+          Longitud= getIntent().getDoubleExtra("lo",0);
+          Latitud= getIntent().getDoubleExtra("la",0);
         Intent Localizacion = new Intent(this,Mapa.class);
 
         //Aqui le paso a la pantala mapa la longitud y latitud
@@ -222,6 +231,24 @@ public class Mostrar_Informacion extends AppCompatActivity {
     public void volver(View view) {
         finish();
     }
+
+
+    public void Compartir (View view){
+        try{
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+
+
+            i.putExtra(Intent.EXTRA_SUBJECT,getResources().getString(R.string.app_name));
+            String str="Te ha compartido una ubicacion \n" + nombre +" https://www.google.es/maps/place/"+Latitud+","+Longitud;
+            i.putExtra(Intent.EXTRA_TEXT,str);
+            startActivity(i);
+        }catch (Exception exception){
+
+        }
+
+    }
+
     public static void cargarDatos(){
         textView_Nom.setText(nombre);
         if (cod_prov==48){
