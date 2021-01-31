@@ -95,7 +95,7 @@ public class Registro extends AppCompatActivity {
                     thread.start();
                     thread.join(); // Esperar respuesta del servidor...
                 if (in1.isBol()==true){
-                    Toast.makeText(this,"Usuario registrado correctamente",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,R.string.usu_res,Toast.LENGTH_LONG).show();
                     etNombre.setText("");
                     etContraseña1.setText("");
                     etContraseña2.setText("");
@@ -104,11 +104,11 @@ public class Registro extends AppCompatActivity {
                     Intent intent = new Intent(this,MainActivity.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(this,"Error al conectar con la base datos",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,R.string.error_base,Toast.LENGTH_LONG).show();
                 }
             }
         } else {
-            Toast.makeText(this,"Las contraseñas no coinciden",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.contra_no,Toast.LENGTH_LONG).show();
             etNombre.setText("");
             etContraseña1.setText("");
             etContraseña2.setText("");

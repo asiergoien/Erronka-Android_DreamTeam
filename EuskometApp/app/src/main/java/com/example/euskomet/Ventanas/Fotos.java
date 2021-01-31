@@ -197,7 +197,7 @@ public class Fotos extends AppCompatActivity {
         }
         boolean guardado = arrayBitmap.get(indImagen).compress(Bitmap.CompressFormat.JPEG, 100, fos);
         if (guardado) {
-            Toast.makeText(this, "Exito al guardar la imagen", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.Exito_Guardar, Toast.LENGTH_SHORT).show();
         }
         if (fos != null) {
             try {
@@ -240,17 +240,6 @@ public class Fotos extends AppCompatActivity {
     }
 
     public void volver(View view) {
-        /*String  nombre = getIntent().getStringExtra("nombre");
-        int cod_mun =  getIntent().getIntExtra("Cod_mun",-1);
-        int cod_prov =  getIntent().getIntExtra("Cod_prov",-1);
-        String desc = getIntent().getStringExtra("desc");
-        Intent intent = new Intent(this,Mostrar_Informacion.class);
-        intent.putExtra("Cod_mun", cod_mun);
-        intent.putExtra("desc",desc);
-        intent.putExtra("nombre",nombre);
-        intent.putExtra("Cod_prov",cod_prov);
-        startActivity(intent);*/
-
         finish();
 
     }

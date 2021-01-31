@@ -51,40 +51,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Registro.class);
         startActivity(intent);
     }
-
-    //  -------------------------------------------------------------------------------------------- CONEXIÓN BASE DE DATOS
-
-    /*
-        public void conectarOnClick(View v) {
-
-            try {
-                if (isConnected()) {
-                    String sRespuesta =  conectarUsuarios();
-                    if (null == sRespuesta) { // Si la respuesta es null, una excepción ha ocurrido.
-                        Toast.makeText(getApplicationContext(), "ERROR_COMUNICACION", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), sRespuesta, Toast.LENGTH_SHORT).show(); // Mostramos en el textView el nombre.
-                        TextView.setText(sRespuesta);
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "ERROR_NO_INTERNET", Toast.LENGTH_SHORT).show();
-                }
-            } catch (InterruptedException e) {
-                // This cannot happen!
-                Toast.makeText(getApplicationContext(), "ERROR_GENERAL", Toast.LENGTH_SHORT).show();
-            }
-
-        }
-
-        private String conectarUsuarios() throws InterruptedException {
-            ClienteThreadPrueba clienteThread = new ClienteThreadPrueba();
-            Thread thread = new Thread(clienteThread);
-            thread.start();
-            thread.join(); // Esperar respuesta del servidor...
-            return clienteThread.getResulset();
-        }
-
-         */
     public boolean isConnected() {
         boolean ret = false;
         try {
@@ -94,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     (networkInfo.isConnected()))
                 ret = true;
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error_comunicación", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.error_com, Toast.LENGTH_SHORT).show();
         }
         return ret;
     }

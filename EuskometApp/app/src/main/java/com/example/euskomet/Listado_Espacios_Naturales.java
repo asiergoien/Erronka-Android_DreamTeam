@@ -152,7 +152,7 @@ import java.util.ArrayList;
 
 
                     if (null == arrayProvincias) { // Si la respuesta es null, una excepción ha ocurrido.
-                        Toast.makeText(getApplicationContext(), "ERROR_COMUNICACION", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.error_base, Toast.LENGTH_SHORT).show();
                     } else {
 
                         //EJECUTAR SPINNER + RECYCLER VIEW
@@ -162,11 +162,11 @@ import java.util.ArrayList;
 
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "ERROR_NO_INTERNET", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.error_com, Toast.LENGTH_SHORT).show();
                 }
             } catch (InterruptedException e) {
                 // This cannot happen!
-                Toast.makeText(getApplicationContext(), "ERROR_GENERAL", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.error_com, Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -214,7 +214,7 @@ import java.util.ArrayList;
                         (networkInfo.isConnected()))
                     ret = true;
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "Error_comunicación", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.error_com, Toast.LENGTH_SHORT).show();
             }
             return ret;
         }

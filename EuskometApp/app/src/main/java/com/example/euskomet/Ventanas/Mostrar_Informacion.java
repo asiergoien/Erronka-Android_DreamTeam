@@ -1,23 +1,32 @@
 package com.example.euskomet.Ventanas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.example.euskomet.BuildConfig;
 import com.example.euskomet.CargarDatos;
 import com.example.euskomet.InsertDatos;
 import com.example.euskomet.Municipio;
 import com.example.euskomet.R;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class Mostrar_Informacion extends AppCompatActivity {
@@ -26,7 +35,8 @@ public class Mostrar_Informacion extends AppCompatActivity {
     private Button btnLoc;
     private Button btnHis;
     private Button btnfav;
-    private Button btnCom;
+    private Button btnCom_loc;
+    private Button btnCom_img;
     private Button btnAtras;
     private TextView Tipo_Prov;
     private TextView textview_Provincia;
@@ -59,7 +69,8 @@ public class Mostrar_Informacion extends AppCompatActivity {
         btnLoc = (Button)findViewById(R.id.btnLoc);
         btnHis = (Button)findViewById(R.id.btnHis);
         btnfav = (Button)findViewById(R.id.btnfav);
-        btnCom = (Button)findViewById(R.id.btnCom);
+        btnCom_loc = (Button)findViewById(R.id.btnCom);
+        btnCom_img = (Button)findViewById(R.id.btnCom_img);
         btnAtras = (Button)findViewById(R.id.btn_atras);
         Tipo_Prov = (TextView)findViewById(R.id.label_Tipo_Prov);
         textview_Provincia = (TextView)findViewById(R.id.textview_Provincia);
@@ -233,19 +244,67 @@ public class Mostrar_Informacion extends AppCompatActivity {
     }
 
 
-    public void Compartir (View view){
+    public void Compartir_Loc (View view){
         try{
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
-
-
             i.putExtra(Intent.EXTRA_SUBJECT,getResources().getString(R.string.app_name));
-            String str="Te ha compartido una ubicacion \n" + nombre +" https://www.google.es/maps/place/"+Latitud+","+Longitud;
-            i.putExtra(Intent.EXTRA_TEXT,str);
-            startActivity(i);
+            if (Latitud!=0 && Longitud!=0){
+                String str=R.string.strCom+"\n" + nombre +" https://www.google.es/maps/place/"+Latitud+","+Longitud;
+                i.putExtra(Intent.EXTRA_TEXT,str);
+                startActivity(i);
+            }else{
+                String str= R.string.strCom+"\n" + nombre +" https://www.google.es/"+nombre;
+            }
+
         }catch (Exception exception){
 
         }
+
+    }
+
+    public void Compartir_Img (View view) throws InterruptedException {
+         ArrayList<Bitmap> arrayBitmap;
+          String fot_tabla= (fav.equals("favoritos_mun") ? "fotos_municipios" : (fav.equals("favoritos_esp") ? "fotos_esp_naturales" : null));
+
+        CargarDatos clienteThread = new CargarDatos("SELECT * FROM "+fot_tabla+" WHERE "+(fot_tabla.equals("fotos_municipios") ? "cod_mun" : (fot_tabla.equals("fotos_esp_naturales") ? "cod_esp_natural" : null))+" = " + cod, 7);
+        Thread thread = new Thread(clienteThread);
+        thread.start();
+        thread.join();
+
+        arrayBitmap= new ArrayList<Bitmap>();
+        ArrayList<Object> viejo = new ArrayList<Object>();
+
+        viejo= clienteThread.getCliemteThread_ArrayList();
+        for (Object ob : viejo){
+            arrayBitmap.add((Bitmap) ob);
+        }
+            if (arrayBitmap.size()>0){
+
+                Bitmap bitmap= arrayBitmap.get(0);
+                try {
+                    File file = new File(getApplicationContext().getExternalCacheDir(), File.separator +"temp.jpeg");
+                    FileOutputStream fOut = new FileOutputStream(file);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+                    fOut.flush();
+                    fOut.close();
+                    file.setReadable(true, false);
+                    final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Uri photoURI = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID +".provider", file);
+
+                    intent.putExtra(Intent.EXTRA_STREAM, photoURI);
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    intent.setType("image/jpeg");
+
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else{
+                Toast.makeText(this, R.string.Error_Compartir, Toast.LENGTH_SHORT).show();
+            }
+
 
     }
 

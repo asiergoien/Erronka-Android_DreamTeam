@@ -53,9 +53,9 @@ public class RecuperarPswd extends AppCompatActivity {
             etContraseña.setVisibility(View.VISIBLE);
             etContraseña2.setVisibility(View.VISIBLE);
             btnRegistrar.setVisibility(View.VISIBLE);
-            Toast.makeText(this, "La respuesta es correcta", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.res_co, Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(this, "La respuesta no es correcta", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.res_in, Toast.LENGTH_LONG).show();
         }
 
     }
@@ -76,11 +76,11 @@ public class RecuperarPswd extends AppCompatActivity {
             //Cambiar contraseña
             String sql= "UPDATE usuarios set contra= '"+cifradoStr+"' where nombre='"+nombre+"'";
             InsertDatos in1 = new InsertDatos(sql);
-            Toast.makeText(this,"Contraseña cambiada correctamente",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.contra_cam,Toast.LENGTH_LONG).show();
 
 
         } else {
-            Toast.makeText(this,"Las contraseñas no coinciden",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.contra_no,Toast.LENGTH_LONG).show();
             etContraseña.setText("");
             etContraseña2.setText("");
         }
@@ -98,7 +98,6 @@ public class RecuperarPswd extends AppCompatActivity {
         md.update(dataBytes);
         byte resumen[] = md.digest();
 
-//		System.out.println("desde la funcion --> " + resumen.toString());
 
         return resumen;
     }

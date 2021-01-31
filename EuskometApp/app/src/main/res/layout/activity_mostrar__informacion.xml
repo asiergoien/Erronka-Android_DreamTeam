@@ -7,29 +7,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="119dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="145dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="145dp"
-        android:fontFamily="@font/abeezee"
-        android:text="@string/titulo"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/Multiline_Desc"
         android:layout_width="267dp"
         android:layout_height="132dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="44dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
@@ -39,24 +22,35 @@
         app:layout_constraintTop_toBottomOf="@+id/textview_Provincia" />
 
     <TextView
-        android:id="@+id/textview_Provincia"
+        android:id="@+id/textview_Nombre"
         android:layout_width="230dp"
         android:layout_height="26dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="67dp"
         android:text="Ejemplo de texto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/label_Tipo_Prov"
-        app:layout_constraintTop_toBottomOf="@+id/textview_Nombre" />
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="58dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/dato1"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/label_Tipo_Prov"
         android:layout_width="66dp"
         android:layout_height="23dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/dato2"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +60,7 @@
         android:id="@+id/textView11"
         android:layout_width="79dp"
         android:layout_height="19dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="12dp"
         android:text="@string/dato3"
         android:textStyle="bold"
@@ -74,38 +68,60 @@
         app:layout_constraintTop_toBottomOf="@+id/label_Tipo_Prov" />
 
     <TextView
-        android:id="@+id/textview_Nombre"
+        android:id="@+id/textView6"
+        android:layout_width="119dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="145dp"
+        android:fontFamily="@font/abeezee"
+        android:text="@string/titulo"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textview_Provincia"
         android:layout_width="230dp"
         android:layout_height="26dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="67dp"
         android:text="Ejemplo de texto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="58dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="72dp"
-        android:text="@string/dato1"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/label_Tipo_Prov"
+        app:layout_constraintTop_toBottomOf="@+id/textview_Nombre" />
 
     <Button
         android:id="@+id/btnCom"
-        android:layout_width="234dp"
-        android:layout_height="50dp"
+        android:layout_width="233dp"
+        android:layout_height="53dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="100dp"
-        android:onClick="Compartir"
-        android:text="@string/compartir"
+        android:onClick="Compartir_Loc"
+        android:text="@string/compartir_loc"
+        app:icon="@drawable/sharing_share_icon_124236"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnfav" />
+
+    <Button
+        android:id="@+id/btnCom_img"
+        android:layout_width="233dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="100dp"
+        android:onClick="Compartir_Img"
+        android:text="@string/compartir_img"
         app:icon="@drawable/sharing_share_icon_124236"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -143,7 +159,7 @@
         android:layout_width="234dp"
         android:layout_height="50dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="100dp"
         android:onClick="Favoritos"
         android:text="@string/añadir_favoritos"
@@ -158,7 +174,7 @@
         android:layout_width="234dp"
         android:layout_height="50dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="100dp"
         android:onClick="Localizacion"
         android:text="@string/mapa"
@@ -173,12 +189,12 @@
         android:layout_width="234dp"
         android:layout_height="50dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="100dp"
         android:text="@string/historico"
         app:icon="@drawable/histori"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLoc" />
 

@@ -10,9 +10,15 @@
 
     <!-- Main Activity-->
     <string name="bienvenido">BIENVENIDO/A</string>
+    <string name="error_com">Error comunicación</string>
+
 
     <!-- Login-->
     <string name="login">Login</string>
+    <string name="Logeado">Te has logueado</string>
+    <string name="Contra_inc">La contraseña introducida no es correcta</string>
+    <string name="Usu_inc">No existe dicho usuario en el sistema</string>
+    <string name="intro_usu_contra">Introduzca usuario y contraseña</string>
     <string name="usuario">Usuario...</string>
     <string name="contraseña">Contraseña...</string>
     <string name="contraseñaOlvidada">Olvidé mi contraseña</string>
@@ -21,6 +27,10 @@
     <!-- Recuperar contraseña-->
     <string name="recuperarContraseña">Recuperar contraseña</string>
     <string name="preguntaSeguridad_recuperarContra">Pregunta de seguridad:</string>
+    <string name="res_co">La respuesta es correcta</string>
+    <string name="res_in">La respuesta no es correcta</string>
+    <string name="contra_cam">Contraseña cambiada correctamente</string>
+    <string name="contra_no">Las contraseñas no coinciden</string>
 
 
     <!-- Registro-->
@@ -29,6 +39,8 @@
     <string name="contraseña2registro">Confirmar contraseña...</string>
     <string name="preguntaSeguridad_registro">Escoja una pregunta de seguridad y su respuesta por favor:</string>
     <string name="respuestaClave">Respuesta...</string>
+    <string name="usu_res">Usuario registrado correctamente</string>
+    <string name="error_base">Error al conectar con la base de datos</string>
 
     <string-array name="preguntas">
         <item>¿Dónde naciste?</item>
@@ -62,11 +74,18 @@
 
     <string name="añadir_favoritos">Añadir a Favoritos</string>
 
-    <string name="compartir">Compartir</string>
+    <string name="compartir_loc">Compartir Localización</string>
+    <string name="compartir_img">Compartir Imagen</string>
+
+    <string name="Error_Compartir">No hay ninguna en la base de datos</string>
 
     <!-- Fotos -->
     <string name="Titulo_Fotos">Ejemplo</string>
     <string name="guardar_foto">Guardar foto</string>
+    <string name="Exito_Guardar">Exito al guardar la imagen</string>
 
-
+    <!-- Mapas -->
+    <string name="No_coordenadas">No hay Coordenadas de</string>
+    <!-- Compartir -->
+    <string name="strCom">Te ha compartido una ubicacion</string>
 </resources>

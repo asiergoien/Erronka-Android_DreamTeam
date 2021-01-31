@@ -89,19 +89,19 @@ public class Login extends AppCompatActivity {
 
                 if (cifradoStr.equals(contraguardada)) { // si la contraseña guardada coincide con la contraseña introducida
 //                if (contraseña.equals(contraguardada)) { // si la contraseña guardada coincide con la contraseña introducida
-                    Toast.makeText(this, "Te has logueado", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.Logeado, Toast.LENGTH_LONG).show();
 
                     //  USUARIO LOGUEADO    -   CAMBIO DE PANTALLA
                     cambioPantalla_MenuPrincipal(us);
 
                 } else {
-                    Toast.makeText(this, "La contraseña introducida no es correcta", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, R.string.Contra_inc, Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(this, "No existe dicho usuario en el sistema", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.Usu_inc, Toast.LENGTH_LONG).show();
             }
         }else {
-            Toast.makeText(this, "Introduzca usuario y contraseña", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.intro_usu_contra, Toast.LENGTH_LONG).show();
         }
 
     }
@@ -130,7 +130,7 @@ public class Login extends AppCompatActivity {
                 intent.putExtra("contra",us.getContra());
                 startActivity(intent);
             }else{
-                Toast.makeText(this, "No existe dicho usuario en el sistema", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.Usu_inc, Toast.LENGTH_LONG).show();
             }
         }else{
             Toast.makeText(this, R.string.contraseñaOlvidada_toast, Toast.LENGTH_LONG).show();

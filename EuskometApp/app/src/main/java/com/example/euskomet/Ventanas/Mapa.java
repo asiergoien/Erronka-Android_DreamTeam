@@ -46,14 +46,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback   {
             LatLng espacio_natural = new LatLng(latitud, longitud);
             mapa.addMarker(new MarkerOptions().position(espacio_natural).title(nombre));
            mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(espacio_natural,18),5000,null);
-           // mapa.moveCamera(CameraUpdateFactory.newLatLng(espacio_natural));
-
-//                GoogleMap mapa = googleMap;
-//                LatLng oElorrieta = new LatLng(43.283531, -2.965031); // Elorriet 43.283531, -2.965031
-//                mapa.addMarker(new MarkerOptions().position(oElorrieta).title("Marker Elorrieta"));
-//                        mapa.moveCamera(CameraUpdateFactory.newLatLng(oElorrieta));
        }else{
-            Toast.makeText(this, "No hay Coordenadas de "+nombre, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.No_coordenadas+nombre, Toast.LENGTH_LONG).show();
         }
     }
 

@@ -37,9 +37,9 @@ public class CargarDatos implements Runnable {
         String sBBDD;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            sIP = "192.168.106.12";  //Asier Klase
+            //sIP = "192.168.106.12";  //Asier Klase
             //sIP = "localhost";
-            //sIP = "192.168.0.11"; // Asier casa
+            sIP = "192.168.0.11"; // Asier casa
             //sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
