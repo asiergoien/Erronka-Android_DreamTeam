@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.euskomet.CargarDatos;
@@ -55,6 +56,7 @@ public class Fotos extends AppCompatActivity {
     private ImageView imagen;
     private ImageButton btnSiguiente;
     private ImageButton btnAnterior;
+    private TextView text_titulo;
     public File foto;
     public Bitmap imgBitmap;
     private String fot_tabla;
@@ -71,10 +73,12 @@ public class Fotos extends AppCompatActivity {
         imagen = (ImageView)findViewById(R.id.imagen);
         btnSiguiente = (ImageButton)findViewById(R.id.imgBtnDerecha);
         btnAnterior = (ImageButton) findViewById(R.id.imgBtnIzquierda);
+        text_titulo = (TextView)findViewById(R.id.text_titulo);
 
 
         cod =  getIntent().getIntExtra("cod",-1);
         fot_tabla =  getIntent().getStringExtra("foto");
+
 
         try {
             CargarDatos clienteThread = new CargarDatos("SELECT * FROM "+fot_tabla+" WHERE "+(fot_tabla.equals("fotos_municipios") ? "cod_mun" : (fot_tabla.equals("fotos_esp_naturales") ? "cod_esp_natural" : null))+" = " + cod, 7);

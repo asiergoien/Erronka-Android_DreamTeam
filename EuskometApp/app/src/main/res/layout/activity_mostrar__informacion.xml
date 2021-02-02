@@ -11,14 +11,18 @@
         android:id="@+id/Multiline_Desc"
         android:layout_width="267dp"
         android:layout_height="132dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:inputType="none"
+        android:textIsSelectable="true"
+        android:focusable="false"
         android:ems="10"
         android:gravity="start|top"
-        android:inputType="textMultiLine"
         android:text="Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto Ejemplo de texto "
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/textview_Provincia" />
 
     <TextView
@@ -32,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/text_titulo" />
 
     <TextView
         android:id="@+id/textView8"
@@ -60,28 +64,28 @@
         android:id="@+id/textView11"
         android:layout_width="79dp"
         android:layout_height="19dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="12dp"
         android:text="@string/dato3"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/Multiline_Desc"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_Tipo_Prov" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="119dp"
-        android:layout_height="35dp"
+        android:id="@+id/text_titulo"
+        android:layout_width="197dp"
+        android:layout_height="28dp"
         android:layout_marginStart="145dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="145dp"
         android:fontFamily="@font/abeezee"
-        android:text="@string/titulo"
+        android:text="@string/titulo_mo"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,13 +93,12 @@
         android:id="@+id/textview_Provincia"
         android:layout_width="230dp"
         android:layout_height="26dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="67dp"
         android:text="Ejemplo de texto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/label_Tipo_Prov"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/textview_Nombre" />
 
     <Button

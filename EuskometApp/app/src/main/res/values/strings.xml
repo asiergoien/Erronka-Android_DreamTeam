@@ -58,7 +58,7 @@
     <!-- Mostrar informacion-->
 
 
-    <string name="titulo">Ejemplo</string>
+    <string name="titulo_mo">Información</string>
 
     <string name="dato1">Nombre</string>
 
@@ -80,7 +80,7 @@
     <string name="Error_Compartir">No hay ninguna en la base de datos</string>
 
     <!-- Fotos -->
-    <string name="Titulo_Fotos">Ejemplo</string>
+    <string name="Titulo_Fotos">Fotos</string>
     <string name="guardar_foto">Guardar foto</string>
     <string name="Exito_Guardar">Exito al guardar la imagen</string>
 
@@ -88,4 +88,5 @@
     <string name="No_coordenadas">No hay Coordenadas de</string>
     <!-- Compartir -->
     <string name="strCom">Te ha compartido una ubicacion</string>
+    <string name="errorCom">No se ha podido compartir ninguan ubicación</string>
 </resources>

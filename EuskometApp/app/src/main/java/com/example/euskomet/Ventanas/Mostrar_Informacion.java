@@ -7,8 +7,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +38,8 @@ public class Mostrar_Informacion extends AppCompatActivity {
     private Button btnAtras;
     private TextView Tipo_Prov;
     private TextView textview_Provincia;
+    private TextView text_titulo;
+
 
     public static  TextView textView_Nom;
     public static TextView textView_Prov;
@@ -66,6 +66,7 @@ public class Mostrar_Informacion extends AppCompatActivity {
         setContentView(R.layout.activity_mostrar__informacion);
 
         btnFotos = (Button)findViewById(R.id.btnFotos);
+        text_titulo = (TextView)findViewById(R.id.text_titulo);
         btnLoc = (Button)findViewById(R.id.btnLoc);
         btnHis = (Button)findViewById(R.id.btnHis);
         btnfav = (Button)findViewById(R.id.btnfav);
@@ -76,6 +77,7 @@ public class Mostrar_Informacion extends AppCompatActivity {
         textview_Provincia = (TextView)findViewById(R.id.textview_Provincia);
 
         fav = getIntent().getStringExtra("fav");
+
         if (fav.equals("favoritos_mun")) {
             Tipo_Prov.setText("Provincia");
             btnLoc.setVisibility(View.GONE);
@@ -127,6 +129,7 @@ public class Mostrar_Informacion extends AppCompatActivity {
         cargarDatos();
 
         fav = getIntent().getStringExtra("fav");
+
 
         if (fav.equals("favoritos_mun")) {
             Tipo_Prov.setText("Provincia");
@@ -249,17 +252,19 @@ public class Mostrar_Informacion extends AppCompatActivity {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_SUBJECT,getResources().getString(R.string.app_name));
+            //String str=R.string.strCom+"\n";
+            String str="Te ha compartido una ubicacion \n";
             if (Latitud!=0 && Longitud!=0){
-                String str=R.string.strCom+"\n" + nombre +" https://www.google.es/maps/place/"+Latitud+","+Longitud;
+                 str+= nombre +" https://www.google.es/maps/place/"+Latitud+","+Longitud;
                 i.putExtra(Intent.EXTRA_TEXT,str);
                 startActivity(i);
-            }else{
-                String str= R.string.strCom+"\n" + nombre +" https://www.google.es/"+nombre;
             }
 
-        }catch (Exception exception){
 
+        }catch (Exception exception){
+            Toast.makeText(this, R.string.errorCom, Toast.LENGTH_SHORT).show();
         }
+
 
     }
 
