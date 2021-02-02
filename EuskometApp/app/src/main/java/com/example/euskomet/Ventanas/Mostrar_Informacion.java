@@ -201,12 +201,13 @@ public class Mostrar_Informacion extends AppCompatActivity {
         startActivity(Localizacion);
 
     }
-    /*
-    public void Historico(View view){
-        Intent Fotos = new Intent(this, ClienteThread.ListadoDatos_Municipios.class);
-        startActivity(Fotos);
 
-    }*/
+    public void Historico(View view){
+        Intent historico = new Intent(this, historico.class);
+        historico.putExtra("cod_mun",cod);
+        startActivity(historico);
+
+    }
     @SuppressLint("ResourceAsColor")
     public void Favoritos(View view) throws InterruptedException {
 
@@ -259,8 +260,6 @@ public class Mostrar_Informacion extends AppCompatActivity {
                 i.putExtra(Intent.EXTRA_TEXT,str);
                 startActivity(i);
             }
-
-
         }catch (Exception exception){
             Toast.makeText(this, R.string.errorCom, Toast.LENGTH_SHORT).show();
         }

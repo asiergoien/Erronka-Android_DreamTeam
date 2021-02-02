@@ -86,6 +86,8 @@
 
     <!-- Mapas -->
     <string name="No_coordenadas">No hay Coordenadas de</string>
+    <!-- historico -->
+    <string name="Sin_datos">No se ha podido cargar los datos</string>
     <!-- Compartir -->
     <string name="strCom">Te ha compartido una ubicacion</string>
     <string name="errorCom">No se ha podido compartir ninguan ubicación</string>
