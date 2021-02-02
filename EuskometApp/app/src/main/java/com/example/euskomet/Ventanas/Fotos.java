@@ -141,6 +141,7 @@ public class Fotos extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK && data!=null) {
 
                 imgBitmap= (Bitmap) data.getExtras().get("data");
+
                 arrayBitmap.add(imgBitmap);
                 indImagen = arrayBitmap.size() - 1;
                 imagen.setImageBitmap(arrayBitmap.get(indImagen));
@@ -171,6 +172,7 @@ public class Fotos extends AppCompatActivity {
         File file = null;
         //Este if es para saber que api tiene y dependiendo de cual se hara una manera o otra
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
             ContentResolver resolver = getContentResolver();
             ContentValues values = new ContentValues();
             String Filename = new Date().toInstant().toString();

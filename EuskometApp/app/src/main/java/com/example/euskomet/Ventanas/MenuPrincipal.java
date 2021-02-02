@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.euskomet.Listado_Espacios_Naturales;
 import com.example.euskomet.Listado_datosMun;
+import com.example.euskomet.Mostrar_Top;
 import com.example.euskomet.R;
 
 public class MenuPrincipal extends AppCompatActivity {
@@ -39,6 +40,11 @@ public class MenuPrincipal extends AppCompatActivity {
 
     }
     public void Top_ranking(View view){
+        Intent Mostrar_Top = new Intent(this, Mostrar_Top.class);
+        int codusu = getIntent().getIntExtra("cod_usuario", -1);
+        Log.i("codusu", "MenuPrincMun: " + codusu);
+        Mostrar_Top.putExtra("cod_usuario", codusu);
+        startActivity(Mostrar_Top);
 
     }
     @SuppressLint("LongLogTag")

@@ -101,6 +101,10 @@ public class CargarDatos implements Runnable {
                     byte[] byteArray = blob.getBytes(1, (int) blob.length());
                     Bitmap bm = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
                     ClienteThread_ArrayList.add(bm);
+                } else if (tipo == 8) {//Coger TOPS
+                    Integer cod_mun = rs.getInt("cod_mun");
+                    FavoritosMun fav1 = new FavoritosMun(cod_mun);
+                    ClienteThread_ArrayList.add(fav1);
                 }
             }
 
