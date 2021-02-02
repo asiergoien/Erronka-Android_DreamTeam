@@ -19,15 +19,17 @@
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
-        android:layout_width="379dp"
-        android:layout_height="609dp"
+        android:layout_width="384dp"
+        android:layout_height="574dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="15dp"
+        android:ems="10"
+        android:focusable="false"
+        android:gravity="start|top"
         android:inputType="none"
         android:textIsSelectable="true"
-        android:focusable="false"
-        android:ems="10"
-        android:gravity="start|top"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

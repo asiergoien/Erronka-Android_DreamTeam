@@ -28,7 +28,6 @@ public class MenuPrincipal extends AppCompatActivity {
         btnMun = (Button)findViewById(R.id.btn_municipios);
         btnTop = (Button)findViewById(R.id.btn_Top);
         btnEsp = (Button)findViewById(R.id.btn_esp);
-        btnFav = (Button)findViewById(R.id.btn_fav);
         btnAtras = (Button)findViewById(R.id.btn_atras);
     }
     public void Municipios(View view){

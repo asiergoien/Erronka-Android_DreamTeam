@@ -294,6 +294,7 @@ public class Mostrar_Informacion extends AppCompatActivity {
                     fOut.close();
                     file.setReadable(true, false);
                     final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                    intent.putExtra(Intent.EXTRA_SUBJECT,getResources().getString(R.string.app_name));
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     Uri photoURI = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID +".provider", file);
 
