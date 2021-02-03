@@ -1,11 +1,7 @@
 package com.example.euskomet;
 
 public class FavoritosMun {
-
-
-
         private int cod_mun;
-
         public FavoritosMun() {
         }
 

@@ -128,6 +128,8 @@ public class Login extends AppCompatActivity {
                 Intent intent = new Intent(this,RecuperarPswd.class);
                 intent.putExtra("nombre",us.getNombre());
                 intent.putExtra("contra",us.getContra());
+                intent.putExtra("pregunta",us.getPregunta());
+                intent.putExtra("respuesta",us.getRespuesta());
                 startActivity(intent);
             }else{
                 Toast.makeText(this, R.string.Usu_inc, Toast.LENGTH_LONG).show();

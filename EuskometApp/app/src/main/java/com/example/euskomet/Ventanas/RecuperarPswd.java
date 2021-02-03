@@ -41,6 +41,8 @@ public class RecuperarPswd extends AppCompatActivity {
         btnRegistrar=(Button) findViewById(R.id.btnRegistrar);
         btnRegistrar.setVisibility(View.INVISIBLE);
 
+        String Pregunta_us= getIntent().getStringExtra("pregunta");
+        txtPregunta.setText(Pregunta_us);
 
     }
 
@@ -48,8 +50,8 @@ public class RecuperarPswd extends AppCompatActivity {
 
         String respuesta=this.editTextRespuesta.getText().toString();
 
-        String Pregunta_us= getIntent().getStringExtra("pregunta");
-        if (respuesta.equals(Pregunta_us)) { // comprueba si la respuesta es la misma
+        String respuestaGuardada= getIntent().getStringExtra("respuesta");
+        if (respuesta.equals(respuestaGuardada)) { // comprueba si la respuesta es la misma
             etContraseña.setVisibility(View.VISIBLE);
             etContraseña2.setVisibility(View.VISIBLE);
             btnRegistrar.setVisibility(View.VISIBLE);

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Euskomet">
-        <activity android:name=".Ventanas.historico"></activity>
+        <activity android:name=".Ventanas.listado_favoritos"></activity>
+        <activity android:name=".Ventanas.historico" />
         <activity android:name=".Mostrar_Top" />
 
         <meta-data

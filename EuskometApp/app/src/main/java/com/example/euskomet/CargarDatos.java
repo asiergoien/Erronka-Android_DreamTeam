@@ -112,7 +112,15 @@ public class CargarDatos implements Runnable {
                     String ICA_est = rs.getString("ICA_estacion");
                     historicoObj hs1= new historicoObj(fecha,ICA_est);
                     ClienteThread_ArrayList.add(hs1);
-                }
+                }else if (tipo == 10) {//Coger favoritos del usuario - Municipios
+                    Integer cod_mun = rs.getInt("cod_mun");
+                    FavoritosMun fav1 = new FavoritosMun(cod_mun);
+                    ClienteThread_ArrayList.add(fav1);
+                }else if (tipo == 10) {//Coger favoritos del usuario - Espacios naturales
+                Integer cod_esp_natural = rs.getInt("cod_esp_natural");
+                FavoritosMun fav1 = new FavoritosMun(cod_esp_natural);
+                ClienteThread_ArrayList.add(fav1);
+            }
 
             }
 
