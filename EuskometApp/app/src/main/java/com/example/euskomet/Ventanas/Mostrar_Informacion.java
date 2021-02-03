@@ -79,11 +79,13 @@ public class Mostrar_Informacion extends AppCompatActivity {
         fav = getIntent().getStringExtra("fav");
 
         if (fav.equals("favoritos_mun")) {
-            Tipo_Prov.setText("Provincia");
+            Tipo_Prov.setText(getString(R.string.dato2));
             btnLoc.setVisibility(View.GONE);
+            btnCom_loc.setVisibility(View.GONE);
+
         }
         else if (fav.equals("favoritos_esp")) {
-            Tipo_Prov.setText("Tipo");
+            Tipo_Prov.setText(getString(R.string.tipo));
             String nombre_esp =getIntent().getStringExtra("tipo");
             textview_Provincia.setText(nombre_esp);
         }
@@ -132,10 +134,13 @@ public class Mostrar_Informacion extends AppCompatActivity {
 
 
         if (fav.equals("favoritos_mun")) {
-            Tipo_Prov.setText("Provincia");
+            Tipo_Prov.setText(getString(R.string.dato2));
+            btnLoc.setVisibility(View.GONE);
+            btnCom_loc.setVisibility(View.GONE);
+
         }
         else if (fav.equals("favoritos_esp")) {
-            Tipo_Prov.setText("Tipo");
+            Tipo_Prov.setText(getString(R.string.tipo));
             String nombre_esp =getIntent().getStringExtra("tipo");
             textview_Provincia.setText(nombre_esp);
 

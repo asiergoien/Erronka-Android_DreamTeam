@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Euskomet</string>
+
+    <!-- GENERAL -->
+    <string name="atras">Atzera</string>
+            <string name="entrar">SARTU</string>
+    <string name="registrarse">ERREGISTRATU</string>
+    <string name="registrar">ERREGISTRATU</string>
+    <string name="aceptar">ONARTU</string>
+
+    <!-- Main Activity-->
+    <string name="bienvenido">ONGI ETORRI</string>
+    <string name="error_com">Komunikazio akatsa</string>
+
+
+    <!-- Login-->
+    <string name="login">Logeatu</string>
+    <string name="Logeado">Logeatu zara</string>
+    <string name="Contra_inc">Sartutako pasahitza ez da zuzena</string>
+    <string name="Usu_inc">Ez dago horrelako erabiltzailerik sisteman</string>
+    <string name="intro_usu_contra">Idatzi erabiltzaile izena eta pasahitza</string>
+    <string name="usuario">Erabiltzailea ...</string>
+    <string name="contraseña">Pasahitza ...</string>
+    <string name="contraseñaOlvidada">Pasahitza ahaztu dut</string>
+    <string name="contraseñaOlvidada_toast">Mesedez, sartu erabiltzailea  pasahitza berreskuratzeko</string>
+
+    <!-- Recuperar contraseña-->
+    <string name="recuperarContraseña">Pasahitza berreskuratu</string>
+    <string name="preguntaSeguridad_recuperarContra">Segurtasun Galdera:</string>
+    <string name="res_co">Erantzun zuzena </string>
+    <string name="res_in">Erantzuna ez da zuzena</string>
+    <string name="contra_cam">Pasahitza ondo aldatu da</string>
+    <string name="contra_no">Pasahitzak ez datoz bat</string>
+
+
+    <!-- Registro-->
+    <string name="registro">Erregistroa</string>
+    <string name="contraseña1registro">Pasahitza ...</string>
+    <string name="contraseña2registro">Pasahitza baieztatu...</string>
+    <string name="preguntaSeguridad_registro">Aukeratu segurtasun galdera bat eta sartu erantzuna mesedez:</string>
+    <string name="respuestaClave">Erantzuna ...</string>
+    <string name="usu_res">Erabiltzailea behar bezala erregistratu da</string>
+    <string name="error_base">Ezin izan da datu-basera konektatu</string>
+
+    <string-array name="preguntas">
+        <item>Non jaio zinen?</item>
+        <item>Zein da zure amaren bigarren abizena?</item>
+        <item>Zein urtetan jaio zinen?</item>
+        <item>Zure oinarrizko eskola?</item>
+    </string-array>
+
+    <!-- Menu Principal-->
+    <string name="municipios">Udalerriak</string>
+    <string name="espaciosNaturales">Espazio naturalak</string>
+    <string name="ranking">Sailkapen nagusia</string>
+    <string name="favoritos">Gogokoak</string>
+
+    <!-- Mostrar informacion-->
+
+
+    <string name="titulo_mo">informazioa</string>
+
+
+    <string name="dato1">Izena</string>
+
+
+
+    <string name="dato2">Probintzia</string>
+
+    <string name="dato3">Deskribapena</string>
+
+    <string name="fotos">Argazkiak</string>
+
+    <string name="mapa">Kokapena</string>
+
+    <string name="historico">Historikoa</string>
+
+    <string name="tipo">Mota</string>
+
+
+    <string name="añadir_favoritos">Gehitu gogokoetara</string>
+
+    <string name="compartir_loc">Partekatu kokapena</string>
+    <string name="compartir_img">Partekatu irudia</string>
+
+    <string name="Error_Compartir">Ez dago datu basean</string>
+
+    <!-- Fotos -->
+    <string name="Titulo_Fotos">Argazkiak</string>
+    <string name="guardar_foto">Gorde argazkia</string>
+    <string name="Exito_Guardar">Irudia gordetzeko arrakasta</string>
+
+    <!-- Mapas -->
+    <string name="No_coordenadas">Ez dago koordenadarik</string>
+    <!-- historico -->
+    <string name="Sin_datos">Ezin izan dira datuak kargatu</string>
+    <!-- Compartir -->
+    <string name="strCom">Kokapen bat partekatu du zurekin</string>
+    <string name="errorCom">Ezin da kokapenik partekatu</string>
+
+</resources>

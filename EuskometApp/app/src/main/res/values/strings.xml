@@ -64,6 +64,8 @@
 
     <string name="dato2">Provincia</string>
 
+    <string name="tipo">tipo</string>
+
     <string name="dato3">Descripcion</string>
 
     <string name="fotos">Fotos</string>

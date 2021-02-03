@@ -38,9 +38,9 @@ public class CargarDatos implements Runnable {
         String sBBDD;
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            //sIP = "192.168.106.12";  //Asier Klase
+            sIP = "192.168.106.12";  //Asier Klase
             //sIP = "localhost";
-            sIP = "192.168.0.11"; // Asier casa
+            //sIP = "192.168.0.11"; // Asier casa
             //sIP = "192.168.0.13";  //Aitor Casa
             sPuerto = "3306";
             sBBDD = "euskomet"; //nombre de la base de datos
@@ -107,7 +107,7 @@ public class CargarDatos implements Runnable {
                     FavoritosMun fav1 = new FavoritosMun(cod_mun);
                     ClienteThread_ArrayList.add(fav1);
                 }else if (tipo == 9) {//Coger Historico
-                    Date fecha = rs.getDate("fecha");
+                    Date fecha = rs.getTimestamp("fecha");
                    // String cod_mun = rs.getInt("cod_mun");
                     String ICA_est = rs.getString("ICA_estacion");
                     historicoObj hs1= new historicoObj(fecha,ICA_est);

@@ -12,7 +12,9 @@ import com.example.euskomet.Provincias;
 import com.example.euskomet.R;
 import com.example.euskomet.historicoObj;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class historico extends AppCompatActivity {
     public static EditText multilinea;
@@ -22,6 +24,7 @@ public class historico extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String idioma = Locale.getDefault().getLanguage();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historico);
         multilinea = (EditText)findViewById(R.id.editTextTextMultiLine);
@@ -35,7 +38,7 @@ public class historico extends AppCompatActivity {
         if (ArrayHist.size()>0){
             String str="";
             for (historicoObj hi1 : ArrayHist){
-                str+= hi1.getFecha()+"\t-->\t"+hi1.getICA_estacion()+"\n";
+                str+= new SimpleDateFormat("dd-MM-yyyy HH:mm").format(hi1.getFecha())+"\t-->\t"+(idioma.equals("es") ? hi1.getICA_estacion().split(" / ")[0] : (idioma.equals("eu") ? hi1.getICA_estacion().split(" / ")[1] : hi1.getICA_estacion()))+"\n";
             }
             multilinea.setText(str);
         }else{
