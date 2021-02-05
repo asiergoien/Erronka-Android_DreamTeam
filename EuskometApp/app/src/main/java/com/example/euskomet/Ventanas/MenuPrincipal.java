@@ -56,16 +56,7 @@ public class MenuPrincipal extends AppCompatActivity {
         ListadoDatos.putExtra("Municipio", codusu);
         startActivity(ListadoDatos);
     }
-    @SuppressLint("LongLogTag")
-    public void Favoritos(View view){
-        Intent favoritos = new Intent(this, listado_favoritos.class);
-        //aqui xq pasamos codusu?
-        int codusu = getIntent().getIntExtra("cod_usuario", -1);
-        Log.i("[Espacios_naturales - MENUPRINCIPAL]--Cod_usuario", "--------------------[CODIGO_USUARIO]-----"+codusu);
-        favoritos.putExtra("cod_usuario", codusu);
-        favoritos.putExtra("Municipio", codusu);
-        startActivity(favoritos);
-    }
+
 
     public void volver(View view) {
         finish();

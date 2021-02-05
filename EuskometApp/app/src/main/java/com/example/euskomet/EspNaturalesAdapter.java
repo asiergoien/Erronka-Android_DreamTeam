@@ -51,8 +51,8 @@ public class EspNaturalesAdapter extends RecyclerView.Adapter<EspNaturalesAdapte
     public void onBindViewHolder( MyViewHolder holder, int position) {
         EspacioNatural m = arrayEspNat.get(position);
         Log.i(TAG, "onBindViewHolder: he entrado en el bind");
-        holder.cod_esp.setText(String.valueOf(m.getCod_esp_natural()));
-        holder.nombre.setText(m.getNombre());
+        holder.cod_esp.setText("Codigo: "+String.valueOf(m.getCod_esp_natural()));
+        holder.nombre.setText("Nombre: "+m.getNombre());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

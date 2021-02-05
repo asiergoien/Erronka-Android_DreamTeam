@@ -45,8 +45,8 @@ public class MunicipioAdapter extends RecyclerView.Adapter<MunicipioAdapter.MyVi
     @Override
     public void onBindViewHolder( MyViewHolder holder, int position) {
         Municipio m = arrayMunicipio.get(position);
-        holder.cod_mun.setText(String.valueOf(m.getCod_mun()));
-        holder.nombre.setText(m.getNombre());
+        holder.cod_mun.setText("Codigo: "+String.valueOf(m.getCod_mun()));
+        holder.nombre.setText("Nombre: "+m.getNombre());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
